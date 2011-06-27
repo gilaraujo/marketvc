@@ -30,12 +30,8 @@ public class UserServlet extends HttpServlet {
 			user.setEmail(request.getParameter("email"));
 			user.setPasswd(request.getParameter("pass"));
 			user.setName(request.getParameter("name"));
-			user.setAddress(request.getParameter("address"));
-			user.setCity(request.getParameter("city"));
-			user.setState(request.getParameter("state"));
-			user.setCountry(Integer.parseInt(request.getParameter("country")));
-			user.setPostcode(request.getParameter("postcode"));
-			user.setReputation(0);//coloca sem nenhuma reputação			
+			user.setCpf(request.getParameter("cpf"));
+			user.setMoney(request.getParameter("money"));
 
 			try {
 				Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -72,11 +68,7 @@ public class UserServlet extends HttpServlet {
 					user2 = (User) session.load(User.class,user.getEmail());
 					user2.setPasswd(request.getParameter("pass"));
 					user2.setName(request.getParameter("name"));
-					user2.setAddress(request.getParameter("address"));
-					user2.setCity(request.getParameter("city"));
-					user2.setState(request.getParameter("state"));
-					user2.setCountry(Integer.parseInt(request.getParameter("country")));
-					user2.setPostcode(request.getParameter("postcode"));
+					user2.setCpf(request.getParameter("cpf"));
 					session.update(user2);
 					usession.setAttribute("user", user2);
 					session.getTransaction().commit();
