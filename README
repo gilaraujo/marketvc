@@ -1,3 +1,5 @@
+Trabalho:
+
 Desenvolver um sistema que permita o aprendizado de investimento em bolsas de valores. Esse
 sistema, periodicamente, deve obter informações de ações, para isso pode-se utilizar o site Yahoo
 Finance.
@@ -6,3 +8,6 @@ Caso seus recursos acabem ou desejam mais recursos, poderão adquirir junto ao ba
 
 Esses usuários poderão acompanhar as cotações via gráficos e visualizar seus investimentos, lucros e
 perdas.
+
+
+
