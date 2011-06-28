@@ -50,6 +50,18 @@ public void setPasswd(String passwd) {
 	this.passwd = passwd;
 }
 
+public boolean hasEnoughFunds(double amount) {
+	return (this.funds >= amount);
+}
+
+public boolean decreaseFunds(double amount) {
+	if (hasEnoughFunds(amount)) {
+		this.funds -= amount;
+		return true;
+	}
+	return false;
+}
+
 public void setName(String name) { this.name = name; }
 
 public String getEmail() { return this.email; }
