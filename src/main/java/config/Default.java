@@ -1,4 +1,4 @@
-package org.usp.marketvc.config;
+package br.usp.marketvc.config;
 
 public interface Default {
 // number of DB connections
@@ -8,7 +8,7 @@ public interface Default {
 //public String dropboxPath = "/tmp";
 
 // space
-public long defaultFunds = 1000;
+public double defaultFunds = 1000;
 
 // servlets
 /*public int INSERT = 0;
