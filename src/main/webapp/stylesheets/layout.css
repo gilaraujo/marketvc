@@ -1,0 +1,76 @@
+/* 
+* Skeleton V1.0.2
+* Copyright 2011, Dave Gamache
+* www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 5/20/2011
+*/
+
+/* Table of Content
+==================================================
+	#Site Styles
+	#Page Styles
+	#Media Queries
+	#Font-Face */
+	
+/* #Site Styles
+================================================== */
+
+header {margin-top:40px}
+nav li {padding-left:15px}
+nav a {font-size:14px; font-weight:bold; text-decoration:none}
+h2 {border-bottom:1px solid #DDD}
+#login {float:right; text-align:right}
+#force-login {text-align:center}
+#force-login input {display:inline}
+#login input {margin-bottom:5px}
+.logged-in {text-align:right}
+.product {border-bottom:1px solid #DDD; padding-top:15px}
+.product img {float:left}
+.pay {list-style:square}
+.pay li {margin-bottom:5px}
+#view-user-prods {text-align:center}
+#order {border:0}
+#order button {display:block}
+#order fieldset {float:right}
+#amount {display:inline; width:30px}
+#buy {float:right; text-align:center}
+#view-user-prods button, #buy button, #order button {font-size:20px; margin-bottom:5px; padding:10px 20px}
+#seller {float:right; padding:10px 15px; text-align:right}
+.edit, .remove {display:block; margin-left:10px; text-indent:-9999px; width:16px; hight:16px; float:left}
+.edit {background:url('/images/edit.png') no-repeat center center}
+.remove {background:url('/images/delete.png') no-repeat center center}
+.inner-product {margin-left:106px}
+.inner-product h4 {margin-bottom:0}
+.inner-product h5 {font-size:12px}
+.product-actions {float:right}
+footer {border-top:1px solid #DDD; font-size:10px; padding-top:10px; text-align:center}
+input[type=file] {margin-bottom:20px}
+
+/* #Page Styles
+================================================== */
+
+/* #Media Queries
+================================================== */
+	
+	/* iPad Portrait/Browser */
+	@media only screen and (min-width: 768px) and (max-width: 991px) {}
+	
+	/* Mobile/Browser */
+	@media only screen and (max-width: 767px) {}
+	
+	/* Mobile Landscape/Browser */
+	@media only screen and (min-width: 480px) and (max-width: 767px) {}
+	
+	/* Anything smaller than standard 960 */
+	@media only screen and (max-width: 959px) {}
+	
+	/* iPad Portrait Only */
+	@media only screen and (min-width: 768px) and (max-width: 991px) and (max-device-width: 1000px) {}
+	
+	/* Mobile Only */
+	@media only screen and (max-width: 767px) and (max-device-width: 1000px) {}
+	
+	/* Mobile Landscape Only */
+	@media only screen and (min-width: 480px) and (max-width: 767px) and (max-device-width: 1000px) {}
