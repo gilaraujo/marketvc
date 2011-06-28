@@ -1,0 +1,11 @@
+# OS generated files #
+######################
+*~
+.DS_STORE
+Thumbs.db
+
+# Compiled source #
+###################
+/target
+*.class
+*.war
