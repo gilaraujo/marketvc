@@ -4,6 +4,7 @@ import java.util.*;
 import java.io.*;
 import javax.persistence.*;
 import java.security.*;
+import br.usp.marketvc.config.*;
 
 @Entity
 @Table(name="tuser")
