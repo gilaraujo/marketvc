@@ -5,6 +5,7 @@ import java.io.*;
 import javax.persistence.*;
 import java.security.*;
 import br.usp.marketvc.config.*;
+import java.sql.*;
 
 @Entity
 @Table(name="tuser")
@@ -18,6 +19,10 @@ private String passwd;
 private String name;
 @Column(name="funds", nullable=false)
 private Double funds;
+@Column(name="birth", nullable=false)
+private java.util.Date birth;
+@Column(name="photo", nullable=true)
+private Blob photo;
 
 public User() {
 	this.funds = defaultFunds;
@@ -64,10 +69,14 @@ public boolean decreaseFunds(double amount) {
 }
 
 public void setName(String name) { this.name = name; }
+public void setBirth(java.util.Date birth) { this.birth = birth; }
+public void setPhoto(Blob photo) { this.photo = photo; }
 
 public String getEmail() { return this.email; }
 public String getPasswd() { return this.passwd; }
 public String getName() { return this.name; }
+public java.util.Date getBirth() { return this.birth; }
+public Blob getPhoto() { return this.photo; }
 
 /*@OneToMany
 @JoinColumn (name="email")

@@ -9,6 +9,7 @@ import br.usp.marketvc.util.*;
 import br.usp.marketvc.beans.*;
 import br.usp.marketvc.bundles.*;
 import br.usp.marketvc.config.*;
+import java.util.*;
 
 public class UserServlet extends HttpServlet implements Default {
 
@@ -25,6 +26,7 @@ public class UserServlet extends HttpServlet implements Default {
 			user.setEmail(request.getParameter("email"));
 			user.setPasswd(request.getParameter("pass"));
 			user.setName(request.getParameter("name"));
+			user.setBirth(new Date(Integer.parseInt(request.getParameter("byear")),Integer.parseInt(request.getParameter("bmonth")),Integer.parseInt(request.getParameter("bday"))));
 
 			try {
 				Session session = HibernateUtil.getSessionFactory().getCurrentSession();
