@@ -5,9 +5,9 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 // Para Hibernate 
 import org.hibernate.Session;
-import br.usp.ecommerce.util.*;
-import br.usp.ecommerce.beans.*;
-import br.usp.ecommerce.bundles.*;
+import br.usp.marketvc.util.*;
+import br.usp.marketvc.beans.*;
+import br.usp.marketvc.bundles.*;
 
 public class UserServlet extends HttpServlet {
 
@@ -30,8 +30,6 @@ public class UserServlet extends HttpServlet {
 			user.setEmail(request.getParameter("email"));
 			user.setPasswd(request.getParameter("pass"));
 			user.setName(request.getParameter("name"));
-			user.setCpf(request.getParameter("cpf"));
-			user.setMoney(request.getParameter("money"));
 
 			try {
 				Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -68,7 +66,6 @@ public class UserServlet extends HttpServlet {
 					user2 = (User) session.load(User.class,user.getEmail());
 					user2.setPasswd(request.getParameter("pass"));
 					user2.setName(request.getParameter("name"));
-					user2.setCpf(request.getParameter("cpf"));
 					session.update(user2);
 					usession.setAttribute("user", user2);
 					session.getTransaction().commit();
