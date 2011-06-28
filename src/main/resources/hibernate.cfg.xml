@@ -31,12 +31,12 @@
         <!-- Drop and re-create the database schema on startup -->
 		<property name="hbm2ddl.auto">create</property>
 
-		<!--<mapping class="br.usp.ecommerce.beans.User"/>
-		<mapping class="br.usp.ecommerce.beans.Product"/>
-		<mapping class="br.usp.ecommerce.beans.Category"/>
-		<mapping class="br.usp.ecommerce.beans.Order"/>
-		<mapping class="br.usp.ecommerce.beans.Payment"/>
-		<mapping class="br.usp.ecommerce.util.HibernateUtil"/>-->
+		<mapping class="br.usp.marketvc.beans.User"/>
+		<!--<mapping class="br.usp.marketvc.beans.Product"/>
+		<mapping class="br.usp.marketvc.beans.Category"/>
+		<mapping class="br.usp.marketvc.beans.Order"/>
+		<mapping class="br.usp.marketvc.beans.Payment"/>
+		<mapping class="br.usp.marketvc.util.HibernateUtil"/>-->
 
     </session-factory>
 

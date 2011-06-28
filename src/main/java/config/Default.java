@@ -11,10 +11,13 @@ public interface Default {
 public double defaultFunds = 1000;
 
 // servlets
-/*public int INSERT = 0;
-public int REMOVE = 1;
-public int EDIT = 2;
+public int INSERT = 0;
+public int EDIT = 1;
+public int UPDATE = 2;
+public int LOGIN = 3;
+public int LOGOUT = 4;
 
+/*
 // user servlet
 public int LOGIN = 3;
 public int LOGOUT = 4;

@@ -18,6 +18,7 @@ private String passwd;
 private String name;
 @Column(name="funds", nullable=false)
 private Double funds;
+
 public User() {
 	this.funds = defaultFunds;
 }

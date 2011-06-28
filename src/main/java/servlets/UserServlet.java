@@ -8,20 +8,15 @@ import org.hibernate.Session;
 import br.usp.marketvc.util.*;
 import br.usp.marketvc.beans.*;
 import br.usp.marketvc.bundles.*;
+import br.usp.marketvc.config.*;
 
-public class UserServlet extends HttpServlet {
+public class UserServlet extends HttpServlet implements Default {
 
-  private final int INSERT = 0;
-  private final int EDIT = 1;
-  private final int UPDATE = 2;
-  private final int LOGIN = 3;
-  private final int LOGOUT = 4;
-  
   public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
       
 	int op = Integer.parseInt(request.getParameter("op"));
-
-        PrintWriter out = response.getWriter();
+	
+	PrintWriter out = response.getWriter();
 	User user,user2;
 	HttpSession usession;
 	switch (op) {
