@@ -8,9 +8,6 @@
 					<h4><%= msg.getString("PERSONAL") %></h4>
 					<ul>
 						<li><a href="/view-user.jsp?id=<%= user.getEmail() %>&op=6"><%= msg.getString("MY_PROF") %></a></li>
-						<li><a href="/user-products.jsp?id=<%= user.getEmail() %>&op=4"><%= msg.getString("MY_PRODS") %></a></li>
-						<li><a href="/new-product.jsp"><%= msg.getString("NEW_PROD") %></a></li>
-						<li><a href="/user?op=1"><%= msg.getString("EDIT_ACC") %></a></li>
 						<li><a href="/user?op=4"><%= msg.getString("LOGOUT") %></a></li>
 					</ul>
 					<% } %>
