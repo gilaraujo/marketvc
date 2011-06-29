@@ -12,6 +12,8 @@
 					<input type="password" id="password" name="pass" />
 					<label for="name"><%= msg.getString("NAME") %></label>
 					<input type="text" id="name" name="name" />
+					<label for="phone"><%= msg.getString("PHONE") %></label>
+					<input type="text" id="phone" name="phone" />
 					<label for="bday"><%= msg.getString("BIRTHDATE") %></label>
 					<fieldset>
 						<input type="text" id="bday" name="bday" maxlength="2" placeholder="<%= msg.getString("DAY_ABBR") %>" />
