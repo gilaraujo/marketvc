@@ -5,7 +5,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 // Para Hibernate 
 import org.hibernate.*;
-import org.hibernate.Session;
 import br.usp.marketvc.util.*;
 import br.usp.marketvc.beans.*;
 import br.usp.marketvc.bundles.*;
