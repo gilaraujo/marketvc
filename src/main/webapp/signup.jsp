@@ -15,8 +15,8 @@
 					<label for="bday"><%= msg.getString("BIRTHDATE") %></label>
 					<fieldset>
 						<input type="text" id="bday" name="bday" maxlength="2" placeholder="<%= msg.getString("DAY_ABBR") %>" />
-						<input type="text" id="mday" name="mday" maxlength="2" placeholder="<%= msg.getString("MONTH_ABBR") %>" />
-						<input type="text" id="yday" name="yday" maxlength="4" placeholder="<%= msg.getString("YEAR_ABBR") %>" />
+						<input type="text" id="bmonth" name="bmonth" maxlength="2" placeholder="<%= msg.getString("MONTH_ABBR") %>" />
+						<input type="text" id="byear" name="byear" maxlength="4" placeholder="<%= msg.getString("YEAR_ABBR") %>" />
 					</fieldset>
 					<label for="pic"><%= msg.getString("PICTURE") %></label>
 					<input type="file" id="pic" name="pic" />
