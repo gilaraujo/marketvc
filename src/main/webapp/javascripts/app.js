@@ -6,7 +6,16 @@
 * http://www.opensource.org/licenses/mit-license.php
 * 5/20/2011
 */	
+
+function dateValidation(day, month, year, msg) {
+	var date = new Date(year, month, day);
 	
+	if (date.getFullYear() != year || date.getMonth() != month || date.getDate() != day) {
+		alert(msg);
+		return false;
+	}
+	return true;
+}
 
 $(document).ready(function() {
 
@@ -37,12 +46,5 @@ $(document).ready(function() {
 			} 
 		});
 	});
-	
-	function validaData(day, month, year) {
-		var date = new Date(year, month, day);
-		
-		if (date.getFullYear() != year || date.getMonth() != month || date.getDate() != day) { return false; }
-		return true;
-	}
 	
 });

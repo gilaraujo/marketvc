@@ -20,7 +20,7 @@
 					</fieldset>
 					<label for="pic"><%= msg.getString("PICTURE") %></label>
 					<input type="file" id="pic" name="pic" />
-					<button type="submit"><%= msg.getString("SIGNUP") %></button>
+					<button type="submit" onclick="return dateValidation(this.form.bday.value, this.form.bmonth.value, this.form.byear.value, '<%= msg.getString("INVALID_DATE") %>');"><%= msg.getString("SIGNUP") %></button>
 				</form>
 			</div>
 <jsp:include page="footer.jsp"/>
