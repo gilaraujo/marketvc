@@ -36,6 +36,13 @@ $(document).ready(function() {
 				
 			} 
 		});
-	}); 
+	});
+	
+	function validaData(day, month, year) {
+		var date = new Date(year, month, day);
+		
+		if (date.getFullYear() != year || date.getMonth() != month || date.getDate() != day) { return false; }
+		return true;
+	}
 	
 });

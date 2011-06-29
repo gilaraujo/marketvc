@@ -21,6 +21,8 @@ header {margin-top:40px}
 nav li {padding-left:15px}
 nav a {font-size:14px; font-weight:bold; text-decoration:none}
 h2 {border-bottom:1px solid #DDD}
+#bday, #mday, #yday {width:25px; float:left; margin-right:10px}
+#yday {width:40px}
 #login {float:right; text-align:right}
 #force-login {text-align:center}
 #force-login input {display:inline}
@@ -36,7 +38,7 @@ h2 {border-bottom:1px solid #DDD}
 #order fieldset {float:right}
 #amount {display:inline; width:30px}
 #buy {float:right; text-align:center}
-#view-user-prods button, #buy button, #order button {font-size:20px; margin-bottom:5px; padding:10px 20px}
+#view-user-prods button, #buy button, #order button, #signup button {font-size:20px; margin-bottom:5px; padding:10px 20px}
 #seller {float:right; padding:10px 15px; text-align:right}
 .edit, .remove {display:block; margin-left:10px; text-indent:-9999px; width:16px; hight:16px; float:left}
 .edit {background:url('/images/edit.png') no-repeat center center}
@@ -46,7 +48,8 @@ h2 {border-bottom:1px solid #DDD}
 .inner-product h5 {font-size:12px}
 .product-actions {float:right}
 footer {border-top:1px solid #DDD; font-size:10px; padding-top:10px; text-align:center}
-input[type=file] {margin-bottom:20px}
+fieldset {margin-bottom:0}
+input[type=file] {display:block; margin-bottom:20px}
 
 /* #Page Styles
 ================================================== */
