@@ -21,8 +21,8 @@ header {margin-top:40px}
 nav li {padding-left:15px}
 nav a {font-size:14px; font-weight:bold; text-decoration:none}
 h2 {border-bottom:1px solid #DDD}
-#bday, #mday, #yday {width:25px; float:left; margin-right:10px}
-#yday {width:40px}
+#bday, #bmonth, #byear {width:25px; float:left; margin-right:10px}
+#byear {width:40px}
 #login {float:right; text-align:right}
 #force-login {text-align:center}
 #force-login input {display:inline}
