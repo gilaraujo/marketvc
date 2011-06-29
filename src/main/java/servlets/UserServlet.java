@@ -50,7 +50,7 @@ public class UserServlet extends HttpServlet implements Default {
 										 else if (item.getFieldName().equals("phone")) user.setPhone(item.getString());
 											  else if (item.getFieldName().equals("op")) op = Integer.parseInt(item.getString());
 			} else { // is a file
-				user.setPhoto(Hibernate.createBlob(item.getInputStream()));
+				user.setPhoto(item.get());
 			}
 		}
 	}
