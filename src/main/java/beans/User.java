@@ -21,8 +21,10 @@ private String name;
 private Double funds;
 @Column(name="birth", nullable=false)
 private java.util.Date birth;
+@Column(name="phone", nullable=true)
+private String phone;
 @Column(name="photo", nullable=true)
-private Blob photo;
+private byte[] photo;
 
 public User() {
 	this.funds = defaultFunds;
@@ -70,13 +72,15 @@ public boolean decreaseFunds(double amount) {
 
 public void setName(String name) { this.name = name; }
 public void setBirth(java.util.Date birth) { this.birth = birth; }
-public void setPhoto(Blob photo) { this.photo = photo; }
+public void setPhoto(byte[] photo) { this.photo = photo; }
+public void setPhone(String phone) { this.phone = phone; }
 
 public String getEmail() { return this.email; }
 public String getPasswd() { return this.passwd; }
 public String getName() { return this.name; }
 public java.util.Date getBirth() { return this.birth; }
-public Blob getPhoto() { return this.photo; }
+public byte[] getPhoto() { return this.photo; }
+public String getPhone() { return this.phone; }
 
 /*@OneToMany
 @JoinColumn (name="email")

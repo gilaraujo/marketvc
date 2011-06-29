@@ -4,41 +4,68 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 // Para Hibernate 
-import org.hibernate.Session;
+import org.hibernate.*;
 import br.usp.marketvc.util.*;
 import br.usp.marketvc.beans.*;
 import br.usp.marketvc.bundles.*;
 import br.usp.marketvc.config.*;
 import java.util.*;
+import org.apache.commons.fileupload.*;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.io.output.*;
 
 public class UserServlet extends HttpServlet implements Default {
 
   public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-      
-	int op = Integer.parseInt(request.getParameter("op"));
-	
 	PrintWriter out = response.getWriter();
 	User user,user2;
 	HttpSession usession;
+    int op = LOGOUT;
+
+	boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+	Date birth = new Date();
+	user = new User();    
+	if (isMultipart) {
+		FileItemFactory factory = new DiskFileItemFactory();
+		ServletFileUpload upload = new ServletFileUpload(factory);
+		List items = null;
+		try {
+			items = upload.parseRequest(request);
+		} catch (FileUploadException e) {
+			e.printStackTrace();
+		}
+		Iterator itr = items.iterator();
+		while (itr.hasNext()) {
+			FileItem item = (FileItem) itr.next();
+			
+			if (item.isFormField()) { // form field
+				if (item.getFieldName().equals("email")) user.setEmail(item.getString());
+				else if (item.getFieldName().equals("pass")) user.setPasswd(item.getString());
+					 else if (item.getFieldName().equals("name")) user.setName(item.getString());
+						  else if (item.getFieldName().equals("byear")) birth.setYear(Integer.parseInt(item.getString()));
+							   else if (item.getFieldName().equals("bmonth")) birth.setMonth(Integer.parseInt(item.getString()));
+									else if (item.getFieldName().equals("bday")) birth.setDate(Integer.parseInt(item.getString()));
+										 else if (item.getFieldName().equals("phone")) user.setPhone(item.getString());
+											  else if (item.getFieldName().equals("op")) op = Integer.parseInt(item.getString());
+			} else { // is a file
+				user.setPhoto(item.get());
+			}
+		}
+	}
+	else op = Integer.parseInt(request.getParameter("op"));
 	switch (op) {
 		case INSERT:
-			user = new User();    
-			user.setEmail(request.getParameter("email"));
-			user.setPasswd(request.getParameter("pass"));
-			user.setName(request.getParameter("name"));
-			user.setBirth(new Date(Integer.parseInt(request.getParameter("byear")),Integer.parseInt(request.getParameter("bmonth")),Integer.parseInt(request.getParameter("bday"))));
-
-			try {
-				Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-				session.beginTransaction();
-				session.save(user);
-				session.getTransaction().commit();
-				response.sendRedirect("login.jsp?msg=6");
-
-			} catch (Exception e) { e.printStackTrace(); 
-				response.sendRedirect("signup.jsp?msg=7");			
-			}
+				try {
+					user.setBirth(birth);
+					Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+					session.beginTransaction();
+					session.save(user);
+					session.getTransaction().commit();
+					response.sendRedirect("login.jsp?msg=6");
+				} catch (Exception e) { e.printStackTrace(); 
+					response.sendRedirect("signup.jsp?msg=7");			
+				}
 			break;
 		case EDIT:
 			usession = request.getSession();
