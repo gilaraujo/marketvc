@@ -74,9 +74,9 @@ public class MarketServlet extends HttpServlet implements Default {
 
 					Stock stock = (Stock) session.createQuery("select s from Stock s where s.symbol = :ssymbol").setParameter("ssymbol",id).uniqueResult();
 					Tick tick = stock.getLastTick();
-					value = tick.getLastTrace();
+					value = tick.getLastTrade();
 					total = value * qty;
-					if (user.hasEnoughtFunds(total)) {
+					if (user.hasEnoughFunds(total)) {
 						user.decreaseFunds(total);
 						Investment investment = new Investment();
 						investment.setPrice(value);

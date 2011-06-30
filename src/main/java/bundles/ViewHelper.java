@@ -95,7 +95,7 @@ public class ViewHelper {
 		return buffer.toString();
 	}
 	
-	public static String getDebtList(Locale locale)  throws Exception{
+/*	public static String getDebtList(Locale locale)  throws Exception{
 		ResourceBundle rb = ResourceBundle.getBundle("bundles.View");
 		ResourceBundle messages = ResourceBundle.getBundle("bundles.Messages", locale);
 		StringBuffer buffer = new StringBuffer("");
@@ -136,7 +136,7 @@ public class ViewHelper {
 		
 		return buffer.toString();
 	}
-	
+	*/
 	public static String getInvestmentsList(Locale locale, User user)  throws Exception{
 		ResourceBundle rb = ResourceBundle.getBundle("bundles.View");
 		ResourceBundle messages = ResourceBundle.getBundle("bundles.Messages", locale);
