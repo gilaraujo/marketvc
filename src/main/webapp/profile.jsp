@@ -9,7 +9,7 @@
 				<p><strong><%= msg.getString("NAME") %>:</strong> <%= user.getName() %></p>
 				<p><strong><%= msg.getString("EMAIL") %>:</strong> <%= user.getEmail() %></p>
 				<p><strong><%= msg.getString("PHONE") %>:</strong> <%= user.getPhone() %></p>
-				<p><strong><%= msg.getString("BIRTHDATE") %>:</strong> <%= user.getBirth().toString() %></p>
+				<p><strong><%= msg.getString("BIRTHDATE") %>:</strong> <%= (user.getBirth().getYear()+1900)+"-"+(user.getBirth().getMonth()+1)+"-"+user.getBirth().getDate()%></p>
 				<% } %>
 			</div>
 <jsp:include page="footer.jsp"/>

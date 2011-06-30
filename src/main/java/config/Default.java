@@ -16,6 +16,9 @@ public int EDIT = 1;
 public int UPDATE = 2;
 public int LOGIN = 3;
 public int LOGOUT = 4;
+public int VIEW_PROFILE = 5;
+public int VIEW_FUNDS = 6;
+public int VIEW_INVESTMENTS = 7;
 
 /*
 // user servlet
