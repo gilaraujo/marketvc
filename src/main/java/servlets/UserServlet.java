@@ -22,7 +22,8 @@ public class UserServlet extends HttpServlet implements Default {
 	User user,user2;
 	HttpSession usession;
     int op = LOGOUT;
-
+	Session session;
+	
 	boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 	Date birth = new Date();
 	user = new User();    
@@ -58,22 +59,22 @@ public class UserServlet extends HttpServlet implements Default {
 		case INSERT:
 				try {
 					user.setBirth(birth);
-					Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+					session = HibernateUtil.getSessionFactory().getCurrentSession();
 					session.beginTransaction();
 					session.save(user);
 					session.getTransaction().commit();
-					response.sendRedirect("login.jsp");
+					response.sendRedirect("login.jsp?msg=1");
 				} catch (Exception e) { e.printStackTrace(); 
-					response.sendRedirect("signup.jsp?msg=1");			
+					response.sendRedirect("signup.jsp?msg=2");						
 				}
 			break;
 		case LOGIN:
-			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			user2 = new User();
 			user2.setEmail(request.getParameter("email"));
-			user2.setPasswd(request.getParameter("pass"));
 			user = (User) session.createQuery("select u from User u where u.email = :uemail and u.passwd = :upasswd").setParameter("uemail", user2.getEmail()).setParameter("upasswd", user2.getPasswd()).uniqueResult();				
+			user2.setPasswd(request.getParameter("pass"));
 			session.getTransaction().commit();
 			if (user == null) { response.sendRedirect("login.jsp"); }
 			else {
@@ -114,6 +115,66 @@ public class UserServlet extends HttpServlet implements Default {
 			else
 				response.sendRedirect("investments.jsp");
 			break;
+		case LIST_INVESTMENTS:
+			usession = request.getSession();
+			user = (User) usession.getAttribute("user");
+			if (user == null){
+				response.sendRedirect("login.jsp");
+			}
+			else
+				try{
+					out.println(ViewHelper.getInvestmentsList(request.getLocale(), user));
+				} 
+				catch (Exception e) { 
+					e.printStackTrace();
+					response.sendRedirect("index.jsp?msg=5");
+				}
+			break;
+		case SELL_INVESTMENTS:
+			int id, i, find;
+			double price;
+			usession = request.getSession();
+			user = (User) usession.getAttribute("user");
+			if (user == null){
+				response.sendRedirect("login.jsp");
+			}
+			else 
+				try{
+					id = Integer.parseInt(request.getParameter("id"));
+					List<Investment> investments = user.getInvestments();
+					i = 0;
+					find = 0;
+					while ((i < investments.size()) && (find == 0)) {
+						if (investments.get(i).getId() == id) find = 1;
+						else i++;
+					}
+					if (request.getParameter("bank") != null) {
+						Stock stock = investments.get(i).getStock();
+						Tick tick = stock.getLastTick();
+						price = tick.getLastTrade();
+						user.increaseFunds(price/2);
+						investments.remove(i);		
+						session = HibernateUtil.getSessionFactory().getCurrentSession();
+						session.beginTransaction();
+						session.save(user);
+						session.getTransaction().commit();
+						response.sendRedirect("funds.jsp?msg=8");
+					}
+					else {
+						investments.get(i).setPrice(Double.parseDouble(request.getParameter("price")));
+						investments.get(i).setSelling(new Boolean(request.getParameter("selling") != null)); 
+						session = HibernateUtil.getSessionFactory().getCurrentSession();
+						session.beginTransaction();
+						session.save(user);
+						session.getTransaction().commit();
+						response.sendRedirect("investments.jsp?msg=9");
+					}			
+				} 
+				catch (Exception e) { 
+					e.printStackTrace();
+					response.sendRedirect("index.jsp?msg=7");
+				}
+			break;			
 	}
 
   }

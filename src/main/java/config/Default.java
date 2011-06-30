@@ -7,18 +7,30 @@ public interface Default {
 // directory to store data
 //public String dropboxPath = "/tmp";
 
+public String[] companies = {"MSFT"};
+
 // space
 public double defaultFunds = 1000;
 
 // servlets
 public int INSERT = 0;
-public int EDIT = 1;
 public int UPDATE = 2;
 public int LOGIN = 3;
 public int LOGOUT = 4;
 public int VIEW_PROFILE = 5;
 public int VIEW_FUNDS = 6;
 public int VIEW_INVESTMENTS = 7;
+public int LIST_INVESTMENTS = 8;
+public int SELL_INVESTMENTS = 9;
+public int LATEST_QUOTES = 10;
+public int VIEW_ALL_STOCKS = 11;
+public int LIST_ALL_STOCK = 12;
+public int BUY_STOCK = 13;
+public int RECOMMENDED_STOCKS = 14;
+public int VIEW_BANK = 20;
+public int LIST_DEBT = 21;
+public int TAKE_LOAN = 22;
+public int PAY_DEBT = 23;
 
 /*
 // user servlet
