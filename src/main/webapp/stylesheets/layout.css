@@ -32,7 +32,7 @@ h2 {border-bottom:1px solid #DDD}
 .logged-in {text-align:right}
 #profile img {float:left; width:96px; height:96px}
 .inner-profile {margin-left:106px}
-.quote, .debt, .inv {border-bottom:1px solid #DDD; min-height:120px}
+.quote, .debt, .inv {border-bottom:1px solid #DDD; padding-bottom:30px}
 .quote, .inv {padding-top:20px}
 .quote h4, .inv h4 {display:inline}
 .inner-quote, .inner-inv {margin-left:220px}
