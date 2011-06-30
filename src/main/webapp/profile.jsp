@@ -10,10 +10,6 @@
 				<p><strong><%= msg.getString("EMAIL") %>:</strong> <%= user.getEmail() %></p>
 				<p><strong><%= msg.getString("PHONE") %>:</strong> <%= user.getPhone() %></p>
 				<p><strong><%= msg.getString("BIRTHDATE") %>:</strong> <%= user.getBirth().toString() %></p>
-				<form action="/user">
-					<input type="hidden" name="op" value="1">
-					<button type="submit"><%= msg.getString("EDIT_PROFILE") %></button>
-				</form>
 				<% } %>
 			</div>
 <jsp:include page="footer.jsp"/>
