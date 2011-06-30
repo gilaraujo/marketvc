@@ -8,9 +8,9 @@
 */	
 
 function dateValidation(day, month, year, msg) {
-	var date = new Date(year, month, day);
+	var date = new Date(year, month-1, day);
 	
-	if (date.getFullYear() != year || date.getMonth() != month || date.getDate() != day) {
+	if (date.getFullYear() != year || date.getMonth() != month-1 || date.getDate() != day) {
 		alert(msg);
 		return false;
 	}
