@@ -14,7 +14,6 @@ public class StockTest extends TestCase {
 		Market.newHour();
 	}
 	public void test2() throws Exception{
-/*
 		User user = new User();
 		user.setEmail("1");
 		user.setPasswd("1");
@@ -40,7 +39,6 @@ public class StockTest extends TestCase {
 		stock.getInvestments().add(investment);
 		stock.getInvestments().add(investment2);
 		session.getTransaction().commit();
-*/
 	}
 	public void test3() throws Exception{
 		Loan loan = new Loan();

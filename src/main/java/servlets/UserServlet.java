@@ -73,8 +73,8 @@ public class UserServlet extends HttpServlet implements Default {
 			session.beginTransaction();
 			user2 = new User();
 			user2.setEmail(request.getParameter("email"));
-			user = (User) session.createQuery("select u from User u where u.email = :uemail and u.passwd = :upasswd").setParameter("uemail", user2.getEmail()).setParameter("upasswd", user2.getPasswd()).uniqueResult();				
 			user2.setPasswd(request.getParameter("pass"));
+			user = (User) session.createQuery("select u from User u left join fetch u.investments where u.email = :uemail and u.passwd = :upasswd").setParameter("uemail", user2.getEmail()).setParameter("upasswd", user2.getPasswd()).uniqueResult();				
 			session.getTransaction().commit();
 			if (user == null) { response.sendRedirect("login.jsp"); }
 			else {
@@ -121,7 +121,7 @@ public class UserServlet extends HttpServlet implements Default {
 			if (user == null){
 				response.sendRedirect("login.jsp");
 			}
-			else
+			else {
 				try{
 					out.println(ViewHelper.getInvestmentsList(request.getLocale(), user));
 				} 
@@ -129,6 +129,7 @@ public class UserServlet extends HttpServlet implements Default {
 					e.printStackTrace();
 					response.sendRedirect("index.jsp?msg=5");
 				}
+			}
 			break;
 		case SELL_INVESTMENTS:
 			int id, i, find;
