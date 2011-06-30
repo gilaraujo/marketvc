@@ -6,7 +6,7 @@
 					<%  User user = (User) session.getAttribute("user");
 						if (user != null) { %>
 					<h4><%= msg.getString("ACCOUNT") %></h4>
-					<img src="image/" />
+					<img src="/image" />
 					<ul>
 						<li><a href="/user?op=5"><%= msg.getString("MY_PROFILE") %></a></li>
 						<li><a href="/user?op=6"><%= msg.getString("MY_FUNDS") %></a></li>
