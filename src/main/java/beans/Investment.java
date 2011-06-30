@@ -23,7 +23,7 @@ public class Investment {
 
 	@Column(name="selling")
     private Boolean selling;
-
+/*
 	@ManyToOne
 	@JoinColumn(name="iid", nullable=false, updatable=false, insertable=false)
 	private User owner;
@@ -33,7 +33,7 @@ public class Investment {
 	@JoinColumn(name="sid", nullable=false, updatable=false, insertable=false)
 	private Stock stock;
 	public Stock getStock() { return this.stock; }
-
+*/
 	public Long getId() { return this.iid; }
     public Double getPrice() { return this.price; }
     public Integer getAmount() { return this.amount; }

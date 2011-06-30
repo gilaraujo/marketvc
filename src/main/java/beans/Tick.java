@@ -57,7 +57,12 @@ public class Tick {
 
 	@Column(name="volume")
     private Double volume;
-
+/*
+	@ManyToOne
+	@JoinColumn(name="tid", nullable=false, updatable=false, insertable=false)
+	private Stock stock;
+	public Stock getStock() { return this.stock; }
+*/
     @Transient
 	@XmlElementWrapper(name="results")
 	@XmlElement(name="quote")

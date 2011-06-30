@@ -9,6 +9,7 @@ import java.net.URL;
 
 public class StockTest extends TestCase {
 	public void test1() throws Exception{
+
 		JAXBContext jc = JAXBContext.newInstance(Quote.class);
 		JAXBContext jc2 = JAXBContext.newInstance(Stock.class);
 		JAXBContext jc3 = JAXBContext.newInstance(Tick.class);
@@ -28,13 +29,10 @@ public class StockTest extends TestCase {
 		xmlStream = url.openStream();
 		Tick tick = (Tick) unmarshaller3.unmarshal(xmlStream);
 		tick.update();
-		/*Marshaller marshaller = jc.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        marshaller.marshal(stock, System.out);*/
 
 		//System.out.println("symbol="+stock.getSymbol()+" name="+stock.getName()+" yearlow="+stock.getYearLow()+" yearhigh="+stock.getYearHigh());
 		System.out.println("Date="+quote.getDate()+" Open="+quote.getOpen()+" High="+quote.getHigh());
-		System.out.println("Name="+stock.getName()+" Symbol="+stock.getSymbol()+" YearLow="+stock.getYearLow());
+		System.out.println("Name="+stock.getName()+" Symbol="+stock.getSymbol());
 		System.out.println("LastTrade="+tick.getLastTrade()+" Change="+tick.getChange()+" ChangeInPercent="+tick.getChangeInPercent());
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -42,7 +40,18 @@ public class StockTest extends TestCase {
 		session.save(quote);
 		session.save(tick);
 		session.getTransaction().commit();
-		//System.out.println("Name="+stock2.getInfos().get(0).getName()+" Symbol="+stock2.getInfos().get(0).getSymbol()+" YearLow="+stock2.getInfos().get(0).getYearLow()+" YearHigh="+stock2.getInfos().get(0).getYearHigh());
-		//System.out.println("Name="+stock2.getName()+" Symbol="+stock2.getSymbol()+" YearLow="+stock2.getYearLow()+" YearHigh="+stock2.getYearHigh());
+
+	}
+	public void test2() throws Exception{
+		Market.addStock("PBR");
+	}
+	public void test3() throws Exception{
+		List<Stock> stocks = Market.getStocks();
+		for (int i=0;i<stocks.size();i++) {
+			Stock s = stocks.get(i);
+			System.out.println("ELEMENTO RECUPERADO: "+s.getSymbol());
+			Market.generateQuote(s);
+			System.out.println("QUOTE GERADO PARA: "+s.getSymbol());
+		}
 	}
 }

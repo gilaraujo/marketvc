@@ -64,7 +64,12 @@ public class Quote {
 
 	@Column(name="adjclose")
 	private Double adjclose;
-
+/*
+	@ManyToOne
+	@JoinColumn(name="qid", nullable=false, updatable=false, insertable=false)
+	private Stock stock;
+	public Stock getStock() { return this.stock; }
+*/
 	@Transient
 	@XmlElementWrapper(name="results")
 	@XmlElement(name="quote")
