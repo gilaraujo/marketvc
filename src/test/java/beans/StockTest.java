@@ -9,15 +9,15 @@ import java.net.URL;
 
 public class StockTest extends TestCase {
 	public void test1() throws Exception{
-//		Market.newDay();
-//		Market.newHour();
+		Market.newDay();
+		Market.newHour();
 	}
 	public void test2() throws Exception{
-/*
+
 		User user = new User();
-		user.setEmail("teste1");
-		user.setPasswd("pass1");
-		user.setName("name1");
+		user.setEmail("1");
+		user.setPasswd("1");
+		user.setName("name");
 		user.setBirth(new Date());
 		user.setPhone("12345678");
 		Investment investment = new Investment();
@@ -39,7 +39,7 @@ public class StockTest extends TestCase {
 		stock.getInvestments().add(investment);
 		stock.getInvestments().add(investment2);
 		session.getTransaction().commit();
-*/
+
 	}
 	public void test3() throws Exception{
 	/*	List<Stock> stocks = Market.getStocks();

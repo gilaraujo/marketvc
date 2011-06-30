@@ -70,6 +70,10 @@ public class User implements Serializable, Default {
 		return false;
 	}
 
+	public void increaseFunds(double amount) {
+		this.funds += amount;
+	}
+
 	public void setName(String name) { this.name = name; }
 	public void setBirth(java.util.Date birth) { this.birth = birth; }
 	public void setPhoto(byte[] photo) { this.photo = photo; }
@@ -84,15 +88,15 @@ public class User implements Serializable, Default {
 
 	@OneToMany
 	@JoinColumn(name="email")
-	private Set<Investment> investments = new HashSet<Investment>();
-	public void setInvestments(Set<Investment> investments) { this.investments = investments; }
-	public Set<Investment> getInvestments() { return this.investments; }
+	private List<Investment> investments = new ArrayList<Investment>();
+	public void setInvestments(List<Investment> investments) { this.investments = investments; }
+	public List<Investment> getInvestments() { return this.investments; }
 
 	@OneToMany
 	@JoinColumn(name="email")
-	private Set<Loan> loans = new HashSet<Loan>();
-	public void setLoans(Set<Loan> loans) { this.loans = loans; }
-	public Set<Loan> getLoans() { return this.loans; }
+	private List<Loan> loans = new ArrayList<Loan>();
+	public void setLoans(List<Loan> loans) { this.loans = loans; }
+	public List<Loan> getLoans() { return this.loans; }
 
 	public void newDay() {
 		Iterator itr = this.loans.iterator();

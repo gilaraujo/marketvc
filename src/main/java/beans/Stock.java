@@ -32,21 +32,21 @@ public class Stock {
 
 	@OneToMany
 	@JoinColumn(name="symbol")
-	private Set<Quote> quotes = new HashSet<Quote>();
-	public void setQuotes(Set<Quote> quotes) { this.quotes = quotes; }
-	public Set<Quote> getQuotes() { return this.quotes; }
+	private List<Quote> quotes = new ArrayList<Quote>();
+	public void setQuotes(List<Quote> quotes) { this.quotes = quotes; }
+	public List<Quote> getQuotes() { return this.quotes; }
 
 	@OneToMany
 	@JoinColumn(name="symbol")
-	private Set<Tick> ticks = new HashSet<Tick>();
-	public void setTicks(Set<Tick> ticks) { this.ticks = ticks; }
-	public Set<Tick> getTicks() { return this.ticks; }
+	private List<Tick> ticks = new ArrayList<Tick>();
+	public void setTicks(List<Tick> ticks) { this.ticks = ticks; }
+	public List<Tick> getTicks() { return this.ticks; }
 
 	@OneToMany
 	@JoinColumn(name="symbol")
-	private Set<Investment> investments = new HashSet<Investment>();
-	public void setInvestments(Set<Investment> investments) { this.investments = investments; }
-	public Set<Investment> getInvestments() { return this.investments; }
+	private List<Investment> investments = new ArrayList<Investment>();
+	public void setInvestments(List<Investment> investments) { this.investments = investments; }
+	public List<Investment> getInvestments() { return this.investments; }
 
 	@Transient
 	@XmlElementWrapper(name="results")
@@ -63,6 +63,6 @@ public class Stock {
     public String getName() { return this.name; }
     public String getSymbol() { return this.symbol; }
 	public Tick getLastTick() {
-		return new Tick();
+		return (Tick)this.ticks.get(this.ticks.size()-1);
 	}
 }

@@ -82,8 +82,8 @@ public class MarketServlet extends HttpServlet implements Default {
 						investment.setPrice(value);
 						investment.setAmount(qty);
 						investment.setSelling(false);
-						investment.setStock(stock);
 						session.save(investment);
+						stock.getInvestments().add(investment);
 						user.getInvestments().add(investment);
 						session.save(user);
 						session.getTransaction().commit();
