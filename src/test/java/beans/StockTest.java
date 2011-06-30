@@ -44,15 +44,18 @@ public class StockTest extends TestCase {
 		Loan loan = new Loan();
 		loan.setAmount(new Double(10));
 		loan.setInterest(Bank.newLoan());
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		session.save(loan);
 		System.out.println("INTEREST RATE "+Bank.getInterestRate());
+		session.getTransaction().commit();
 	}
 	public void test4() throws Exception{
-		List<Stock> stocks = Market.getStocks();
-		Iterator itr = stocks.iterator();
-		System.out.println("Stocks:");
-		while (itr.hasNext()) {
-			Stock s = (Stock)itr.next();
-			System.out.println(s.getName());
-		}
+		Market.newDay();
+		Market.newHour();
+		Market.newDay();
+		Market.newHour();
+		Market.newDay();
+		Market.newHour();
 	}
 }

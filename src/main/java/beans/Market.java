@@ -129,7 +129,7 @@ public class Market implements Default {
 			Stock s = (Stock)itr.next();
 			s.getTicks().add(generateTick(s.getSymbol()));
 		}
-		//session.getTransaction().commit();
+		session.getTransaction().commit();
 	}
 	public static List<Stock> getStocks() {
 		List<Stock> stocks;
