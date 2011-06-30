@@ -4,6 +4,8 @@
 <jsp:include page="nav.jsp"/>
 			<div id="profile" class="thirteen columns content">
 				<h2><%= msg.getString("MY_PROFILE") %></h2>
+				<%  User user = (User) session.getAttribute("user");
+					if (user != null) { %>
 				<p><strong><%= msg.getString("NAME") %>:</strong> <%= user.getName() %></p>
 				<p><strong><%= msg.getString("EMAIL") %>:</strong> <%= user.getEmail() %></p>
 				<p><strong><%= msg.getString("PHONE") %>:</strong> <%= user.getPhone() %></p>
@@ -12,5 +14,6 @@
 					<input type="hidden" name="op" value="1">
 					<button type="submit"><%= msg.getString("EDIT_PROFILE") %></button>
 				</form>
+				<% } %>
 			</div>
 <jsp:include page="footer.jsp"/>

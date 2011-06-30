@@ -4,6 +4,8 @@
 <jsp:include page="nav.jsp"/>
 			<div id="profile" class="thirteen columns content">
 				<h2><%= msg.getString("EDIT_PROFILE") %></h2>
+				<%  User user = (User) session.getAttribute("user");
+					if (user != null) { %>
 				<form action="/user" enctype="multipart/form-data" method="post">
 					<input type="hidden" name="op" value="2">
 					<label for="email"><%= msg.getString("EMAIL") %></label>
@@ -24,5 +26,6 @@
 					<input type="file" id="pic" name="pic" />
 					<button type="submit" onclick="return dateValidation(this.form.bday.value, this.form.bmonth.value, this.form.byear.value, '<%= msg.getString("INVALID_DATE") %>');"><%= msg.getString("SAVE") %></button>
 				</form>
+				<% } %>
 			</div>
 <jsp:include page="footer.jsp"/>
