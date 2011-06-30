@@ -78,10 +78,12 @@ public class User implements Serializable, Default {
 	public void setBirth(java.util.Date birth) { this.birth = birth; }
 	public void setPhoto(byte[] photo) { this.photo = photo; }
 	public void setPhone(String phone) { this.phone = phone; }
+	public void setFunds(Double funds) { this.funds = funds; }
 
 	public String getEmail() { return this.email; }
 	public String getPasswd() { return this.passwd; }
 	public String getName() { return this.name; }
+	public Double getFunds() { return this.funds; }
 	public java.util.Date getBirth() { return this.birth; }
 	public byte[] getPhoto() { return this.photo; }
 	public String getPhone() { return this.phone; }

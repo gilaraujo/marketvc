@@ -10,19 +10,22 @@ import javax.xml.bind.*;
 import java.net.*;
 import java.io.*;
 
-@Entity
-@Table(name="tbank")
 public class Bank implements Default {
-	private static Bank singleton = null;
 	private static Double interestrate;
 	static {
-		singleton = new Bank();
-		
-	}
-	public synchronized static Bank getInstance() {
-		return singleton;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Long nloans = (Long)session.createQuery("select count(*) from Loan").uniqueResult();
+		interestrate = 1.1 + 0.01 * nloans;
 	}
 	public static Double getInterestRate() {
 		return interestrate;
+	}
+	public static Double newLoan() {
+		interestrate += 0.01;
+		return interestrate;
+	}
+	public static void paidLoan() {
+		if (interestrate >= 1.11) interestrate -= 0.01;
 	}
 }
