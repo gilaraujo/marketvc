@@ -25,6 +25,7 @@ public class Loan {
 	@JoinColumn(name="email", nullable=true, updatable=false, insertable=false)
 	private User owner;
 	public User getOwner() { return this.owner; }
+	public void setOwner(User owner) { this.owner = owner; }
 
 	public Long getId() { return this.lid; }
     public Double getAmount() { return this.amount; }
@@ -33,5 +34,5 @@ public class Loan {
 	public void setAmount(Double amount) { this.amount = amount; }
 	public void setInterest(Double interest) { this.interest = interest; }
 
-	public void updateInterest() { this.amount += this.amount * this.interest; }
+	public void updateInterest() { this.amount += this.amount * (this.interest/100); }
 }

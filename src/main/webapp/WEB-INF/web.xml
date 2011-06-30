@@ -23,4 +23,15 @@
     <servlet-name>imageservlet</servlet-name>
     <url-pattern>/image</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>marketservlet</servlet-name>
+    <servlet-class>br.usp.marketvc.servlets.MarketServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>marketservlet</servlet-name>
+    <url-pattern>/market</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

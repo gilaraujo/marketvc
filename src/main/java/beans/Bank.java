@@ -16,7 +16,7 @@ public class Bank implements Default {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		Long nloans = (Long)session.createQuery("select count(*) from Loan").uniqueResult();
-		interestrate = 1.1 + 0.01 * nloans;
+		interestrate = 0.3 + 0.01 * nloans;
 	}
 	public static Double getInterestRate() {
 		return interestrate;
@@ -26,6 +26,6 @@ public class Bank implements Default {
 		return interestrate;
 	}
 	public static void paidLoan() {
-		if (interestrate >= 1.11) interestrate -= 0.01;
+		if (interestrate >= 0.11) interestrate -= 0.01;
 	}
 }

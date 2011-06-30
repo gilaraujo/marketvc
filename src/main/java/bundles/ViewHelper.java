@@ -144,8 +144,12 @@ public class ViewHelper {
 		MessageFormat formatter = new MessageFormat("");
 		Object[] parameters = null;
 
-		List<Investment> investments = user.getInvestments();
-	//	if (stocks.size() > 0) {
+		//Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		//session.beginTransaction();
+		
+	//	List investments = session.createQuery("select i from Investment i").list();
+		List investments = user.getInvestments();
+		//if (investments.size() > 0) {
 			for (Iterator it = investments.iterator(); it.hasNext();) {
 				Investment investment = (Investment) it.next();
 				Stock stock = investment.getStock();
@@ -181,7 +185,8 @@ public class ViewHelper {
 				buffer.append(rb.getString("END_INNER_INV"));
 				buffer.append(rb.getString("END_INV"));
 			}
-	//	}
+		//}
+		//session.getTransaction().commit();
 		
 		return buffer.toString();
 	}

@@ -9,12 +9,11 @@ import java.net.URL;
 
 public class StockTest extends TestCase {
 	public void test1() throws Exception{
-		System.out.println("INTEREST RATEEEEEEEEEEEEEE "+Bank.getInterestRate());
+		System.out.println("INTEREST RATE "+Bank.getInterestRate());
 		Market.newDay();
 		Market.newHour();
 	}
 	public void test2() throws Exception{
-/*
 		User user = new User();
 		user.setEmail("1");
 		user.setPasswd("1");
@@ -40,12 +39,21 @@ public class StockTest extends TestCase {
 		stock.getInvestments().add(investment);
 		stock.getInvestments().add(investment2);
 		session.getTransaction().commit();
-*/
 	}
 	public void test3() throws Exception{
 		Loan loan = new Loan();
 		loan.setAmount(new Double(10));
 		loan.setInterest(Bank.newLoan());
-		System.out.println("INTEREST RATEEEEEEEEEEEEEE "+Bank.getInterestRate());
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		User u = (User)session.load(User.class,"1");
+		u.getLoans().add(loan);
+		session.save(loan);
+		System.out.println("INTEREST RATE "+Bank.getInterestRate());
+		session.getTransaction().commit();
+	}
+	public void test4() throws Exception{
+		Market.newDay();
+		Market.newHour();
 	}
 }
