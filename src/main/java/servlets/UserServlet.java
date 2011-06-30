@@ -41,10 +41,10 @@ public class UserServlet extends HttpServlet implements Default {
 			
 			if (item.isFormField()) { // form field
 				if (item.getFieldName().equals("email")) user.setEmail(item.getString());
-				else if (item.getFieldName().equals("pass")) user.setPasswd(item.getString());
+				else if (item.getFieldName().equals("pass")) user.setPasswd(item.getString()); 
 					 else if (item.getFieldName().equals("name")) user.setName(item.getString());
-						  else if (item.getFieldName().equals("byear")) birth.setYear(Integer.parseInt(item.getString()));
-							   else if (item.getFieldName().equals("bmonth")) birth.setMonth(Integer.parseInt(item.getString()));
+						  else if (item.getFieldName().equals("byear")) birth.setYear(Integer.parseInt(item.getString())-1900);
+							   else if (item.getFieldName().equals("bmonth")) birth.setMonth(Integer.parseInt(item.getString())-1);
 									else if (item.getFieldName().equals("bday")) birth.setDate(Integer.parseInt(item.getString()));
 										 else if (item.getFieldName().equals("phone")) user.setPhone(item.getString());
 											  else if (item.getFieldName().equals("op")) op = Integer.parseInt(item.getString());
@@ -62,43 +62,10 @@ public class UserServlet extends HttpServlet implements Default {
 					session.beginTransaction();
 					session.save(user);
 					session.getTransaction().commit();
-					response.sendRedirect("login.jsp?msg=6");
+					response.sendRedirect("login.jsp");
 				} catch (Exception e) { e.printStackTrace(); 
-					response.sendRedirect("signup.jsp?msg=7");			
+					response.sendRedirect("signup.jsp?msg=1");			
 				}
-			break;
-		case EDIT:
-			usession = request.getSession();
-			user = (User) usession.getAttribute("user");
-			if (user == null){
-				response.sendRedirect("login.jsp");
-			}
-			else
-				response.sendRedirect("edit-user.jsp");
-			break;
-		case UPDATE:
-			usession = request.getSession();
-			user = (User) usession.getAttribute("user");
-			if (user == null){
-				response.sendRedirect("login.jsp");
-			}
-			else{
-				try {
-					Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-	
-					session.beginTransaction();
-					user2 = (User) session.load(User.class,user.getEmail());
-					user2.setPasswd(request.getParameter("pass"));
-					user2.setName(request.getParameter("name"));
-					session.update(user2);
-					usession.setAttribute("user", user2);
-					session.getTransaction().commit();
-					response.sendRedirect("index.jsp?msg=8");
-				} catch (Exception e) { e.printStackTrace();
-					response.sendRedirect("edit-user.jsp?msg=9");
-				 }
-
-			}
 			break;
 		case LOGIN:
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -108,7 +75,7 @@ public class UserServlet extends HttpServlet implements Default {
 			user2.setPasswd(request.getParameter("pass"));
 			user = (User) session.createQuery("select u from User u where u.email = :uemail and u.passwd = :upasswd").setParameter("uemail", user2.getEmail()).setParameter("upasswd", user2.getPasswd()).uniqueResult();				
 			session.getTransaction().commit();
-			if (user == null) { response.sendRedirect("login.jsp?msg=12"); }
+			if (user == null) { response.sendRedirect("login.jsp"); }
 			else {
 				usession = request.getSession();
 				usession.setAttribute("user", user);
@@ -120,7 +87,33 @@ public class UserServlet extends HttpServlet implements Default {
 			usession.invalidate();
 			response.sendRedirect("login.jsp");
 			break;
-
+		case VIEW_PROFILE:
+			usession = request.getSession();
+			user = (User) usession.getAttribute("user");
+			if (user == null){
+				response.sendRedirect("login.jsp");
+			}
+			else
+				response.sendRedirect("profile.jsp");
+			break;
+		case VIEW_FUNDS:
+			usession = request.getSession();
+			user = (User) usession.getAttribute("user");
+			if (user == null){
+				response.sendRedirect("login.jsp");
+			}
+			else
+				response.sendRedirect("funds.jsp");
+			break;
+		case VIEW_INVESTMENTS:
+			usession = request.getSession();
+			user = (User) usession.getAttribute("user");
+			if (user == null){
+				response.sendRedirect("login.jsp");
+			}
+			else
+				response.sendRedirect("investments.jsp");
+			break;
 	}
 
   }
