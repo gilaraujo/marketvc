@@ -104,14 +104,14 @@ public class Market implements Default {
 		List<Stock> stocks;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		stocks = (ArrayList<Stock>)session.createQuery("select s from Stock s").list();
+		stocks = (ArrayList<Stock>)session.createQuery("select s from Stock s left join fetch s.quotes").list();
 		Iterator itr = stocks.iterator();
 		while (itr.hasNext()) {
 			Stock s = (Stock)itr.next();
 			s.getQuotes().add(generateQuote(s.getSymbol()));
 		}
 		List<User> users = new ArrayList<User>();
-		users = (ArrayList<User>)session.createQuery("select u from User u").list();
+		users = (ArrayList<User>)session.createQuery("select u from User u left join fetch u.loans").list();
 		itr = users.iterator();
 		while (itr.hasNext()) {
 			User u = (User)itr.next();
@@ -123,20 +123,26 @@ public class Market implements Default {
 		List<Stock> stocks;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		stocks = (ArrayList<Stock>)session.createQuery("select s from Stock s").list();
+		stocks = (ArrayList<Stock>)session.createQuery("select s from Stock s left join fetch s.ticks").list();
 		Iterator itr = stocks.iterator();
 		while (itr.hasNext()) {
 			Stock s = (Stock)itr.next();
 			s.getTicks().add(generateTick(s.getSymbol()));
 		}
-		session.getTransaction().commit();
+		//session.getTransaction().commit();
 	}
 	public static List<Stock> getStocks() {
 		List<Stock> stocks;
+		List<Stock> stocks2;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		stocks = (ArrayList<Stock>)session.createQuery("select s from Stock s").list();
-		session.getTransaction().commit();
+		stocks = (ArrayList<Stock>)session.createQuery("select s from Stock s left join fetch s.quotes").list();
+		stocks2 = (ArrayList<Stock>)session.createQuery("select s from Stock s left join fetch s.ticks").list();
+		for (int i=0;i<stocks.size();i++) {
+			Stock s1 = stocks.get(i);
+			Stock s2 = stocks2.get(i);
+			s1.setTicks(s2.getTicks());
+		}
 		return stocks;
 	}
 }

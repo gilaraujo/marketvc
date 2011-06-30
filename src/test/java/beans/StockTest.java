@@ -9,7 +9,7 @@ import java.net.URL;
 
 public class StockTest extends TestCase {
 	public void test1() throws Exception{
-		System.out.println("INTEREST RATEEEEEEEEEEEEEE "+Bank.getInterestRate());
+		System.out.println("INTEREST RATE "+Bank.getInterestRate());
 		Market.newDay();
 		Market.newHour();
 	}
@@ -44,6 +44,15 @@ public class StockTest extends TestCase {
 		Loan loan = new Loan();
 		loan.setAmount(new Double(10));
 		loan.setInterest(Bank.newLoan());
-		System.out.println("INTEREST RATEEEEEEEEEEEEEE "+Bank.getInterestRate());
+		System.out.println("INTEREST RATE "+Bank.getInterestRate());
+	}
+	public void test4() throws Exception{
+		List<Stock> stocks = Market.getStocks();
+		Iterator itr = stocks.iterator();
+		System.out.println("Stocks:");
+		while (itr.hasNext()) {
+			Stock s = (Stock)itr.next();
+			System.out.println(s.getName());
+		}
 	}
 }
