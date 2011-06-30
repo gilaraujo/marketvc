@@ -1,4 +1,4 @@
-<%@page import="java.util.*" %>
+<%@page import="java.util.*,br.usp.marketvc.beans.*" %>
 <% ResourceBundle msg = ResourceBundle.getBundle("bundles.Messages", request.getLocale()); %>
 <jsp:include page="header.jsp"/>
 <jsp:include page="nav.jsp"/>

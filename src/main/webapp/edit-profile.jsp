@@ -20,7 +20,7 @@
 					<fieldset>
 						<input type="text" id="bday" name="bday" maxlength="2" placeholder="<%= user.getBirth().getDate() %>" />
 						<input type="text" id="bmonth" name="bmonth" maxlength="2" placeholder="<%= user.getBirth().getMonth()+1 %>" />
-						<input type="text" id="byear" name="byear" maxlength="4" placeholder="<%= user.getBirth().getYear()+1900 %>" />
+						<input type="text" id="byear" name="byear" maxlength="4" placeholder="<%= user.getBirth().getYear() %>" />
 					</fieldset>
 					<label for="pic"><%= msg.getString("PICTURE") %></label>
 					<input type="file" id="pic" name="pic" />
