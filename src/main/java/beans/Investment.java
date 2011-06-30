@@ -25,12 +25,12 @@ public class Investment {
     private Boolean selling;
 
 	@ManyToOne
-	@JoinColumn(name="iid", nullable=false, updatable=false, insertable=false)
+	@JoinColumn(name="email", nullable=true, updatable=false, insertable=false)
 	private User owner;
 	public User getOwner() { return this.owner; }
 
 	@ManyToOne
-	@JoinColumn(name="sid", nullable=false, updatable=false, insertable=false)
+	@JoinColumn(name="symbol", nullable=true, updatable=false, insertable=false)
 	private Stock stock;
 	public Stock getStock() { return this.stock; }
 
@@ -41,6 +41,6 @@ public class Investment {
 
 	public void setPrice(Double price) { this.price = price; }
 	public void setAmount(Integer amount) { this.amount = amount; }
-	public void setSeeling(Boolean selling) { this.selling = selling; }
+	public void setSelling(Boolean selling) { this.selling = selling; }
 
 }

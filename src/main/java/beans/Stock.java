@@ -14,18 +14,12 @@ class StockHelper {
     @XmlElement(name="Symbol")
     public String symbol;
 
-    @XmlElement(name="YearLow")
-    public Double yearlow;
-
-    @XmlElement(name="YearHigh")
-    public Double yearhigh;
-
 }
 
 @Entity
 @Table(name="tstock")
 @XmlRootElement(name="query")
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.NONE)
 public class Stock {
 	public Stock() { }
 
@@ -36,11 +30,23 @@ public class Stock {
 	@Column(name="symbol", nullable=false, unique=true)
     private String symbol;
 
-	@Column(name="yearlow")
-    private Double yearlow;
+	@OneToMany
+	@JoinColumn(name="symbol")
+	private Set<Quote> quotes = new HashSet<Quote>();
+	public void setQuotes(Set<Quote> quotes) { this.quotes = quotes; }
+	public Set<Quote> getQuotes() { return this.quotes; }
 
-	@Column(name="yearhigh")
-    private Double yearhigh;
+	@OneToMany
+	@JoinColumn(name="symbol")
+	private Set<Tick> ticks = new HashSet<Tick>();
+	public void setTicks(Set<Tick> ticks) { this.ticks = ticks; }
+	public Set<Tick> getTicks() { return this.ticks; }
+
+	@OneToMany
+	@JoinColumn(name="symbol")
+	private Set<Investment> investments = new HashSet<Investment>();
+	public void setInvestments(Set<Investment> investments) { this.investments = investments; }
+	public Set<Investment> getInvestments() { return this.investments; }
 
 	@Transient
 	@XmlElementWrapper(name="results")
@@ -51,14 +57,12 @@ public class Stock {
 		StockHelper stock = this.infos.get(0);
 		this.name = stock.name;
 		this.symbol = stock.symbol;
-		this.yearlow = stock.yearlow;
-		this.yearhigh = stock.yearhigh;
 		this.infos = null;
 	}
 
     public String getName() { return this.name; }
     public String getSymbol() { return this.symbol; }
-    public Double getYearLow() { return this.yearlow; }
-    public Double getYearHigh() { return this.yearhigh; }
-
+	public Tick getLastTick() {
+		return new Tick();
+	}
 }

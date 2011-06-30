@@ -16,14 +16,14 @@
 					<% } %>
 					<h4><%= msg.getString("MARKET") %></h4>
 					<ul>
-						<li><a href="/quote?op=XXX"><%= msg.getString("LATEST_QUOTES") %></a></li>
+						<li><a href="/market?op=10"><%= msg.getString("LATEST_QUOTES") %></a></li>
 					<% if (user != null) { %>
-						<li><a href="/quote?op=XXX"><%= msg.getString("ALL_STOCKS") %></a></li>
-						<li><a href="/quote?op=XXX"><%= msg.getString("RECOMMENDED_STOCKS") %></a></li>
+						<li><a href="/market?op=11"><%= msg.getString("ALL_STOCKS") %></a></li>
+						<li><a href="/market?op=12"><%= msg.getString("RECOMMENDED_STOCKS") %></a></li>
 					</ul>
 					<h4><%= msg.getString("BANK") %></h4>
 					<ul>
-						<li><a href="/bank?op=XXX"><%= msg.getString("LOANS") %></a></li>
+						<li><a href="/bank?op=20"><%= msg.getString("LOANS") %></a></li>
 					<% } %>
 					</ul>
 				</nav>
