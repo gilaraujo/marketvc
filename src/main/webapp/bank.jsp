@@ -5,7 +5,7 @@
 			<div id="loans" class="thirteen columns content">
 				<h2><%= msg.getString("LOANS") %></h2>
 				<h3><%= msg.getString("TAKE_LOAN") %></h3>
-				<h4><%= msg.getString("INTEREST_RATE") %>: <%= Bank.getInstance().getInterestRate() %>% <em><%= msg.getString("PER_DAY") %></em></h4>
+				<h4><%= msg.getString("INTEREST_RATE") %>: <%= Bank.getInterestRate() %>% <em><%= msg.getString("PER_DAY") %></em></h4>
 				<form action="/bank">
 					<input type="hidden" name="op" value="22">
 					<label for="amount"><%= msg.getString("AMOUNT") %></label>
