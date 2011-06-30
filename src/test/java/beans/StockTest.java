@@ -9,11 +9,12 @@ import java.net.URL;
 
 public class StockTest extends TestCase {
 	public void test1() throws Exception{
+		System.out.println("INTEREST RATEEEEEEEEEEEEEE "+Bank.getInterestRate());
 		Market.newDay();
 		Market.newHour();
 	}
 	public void test2() throws Exception{
-
+/*
 		User user = new User();
 		user.setEmail("1");
 		user.setPasswd("1");
@@ -39,18 +40,12 @@ public class StockTest extends TestCase {
 		stock.getInvestments().add(investment);
 		stock.getInvestments().add(investment2);
 		session.getTransaction().commit();
-
+*/
 	}
 	public void test3() throws Exception{
-	/*	List<Stock> stocks = Market.getStocks();
-		for (int i=0;i<stocks.size();i++) {
-			Stock s = stocks.get(i);
-			System.out.println("ELEMENTO RECUPERADO: "+s.getSymbol());
-			Market.generateQuote(s);
-			System.out.println("QUOTE GERADO PARA: "+s.getSymbol());
-			Market.generateTick(s);
-			System.out.println("TICK GERADO PARA: "+s.getSymbol());
-		}
-*/
+		Loan loan = new Loan();
+		loan.setAmount(new Double(10));
+		loan.setInterest(Bank.newLoan());
+		System.out.println("INTEREST RATEEEEEEEEEEEEEE "+Bank.getInterestRate());
 	}
 }
