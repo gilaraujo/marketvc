@@ -46,15 +46,13 @@ public class StockTest extends TestCase {
 		loan.setInterest(Bank.newLoan());
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
+		User u = (User)session.load(User.class,"1");
+		u.getLoans().add(loan);
 		session.save(loan);
 		System.out.println("INTEREST RATE "+Bank.getInterestRate());
 		session.getTransaction().commit();
 	}
 	public void test4() throws Exception{
-		Market.newDay();
-		Market.newHour();
-		Market.newDay();
-		Market.newHour();
 		Market.newDay();
 		Market.newHour();
 	}
