@@ -36,6 +36,7 @@
 		<mapping class="br.usp.marketvc.beans.Quote"/>
 		<mapping class="br.usp.marketvc.beans.Tick"/>
 		<mapping class="br.usp.marketvc.beans.Investment"/>
+		<mapping class="br.usp.marketvc.beans.Loan"/>
 		<!--<mapping class="br.usp.marketvc.util.HibernateUtil"/>-->
 
     </session-factory>

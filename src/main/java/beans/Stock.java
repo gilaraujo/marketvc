@@ -19,7 +19,7 @@ class StockHelper {
 @Entity
 @Table(name="tstock")
 @XmlRootElement(name="query")
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.NONE)
 public class Stock {
 	public Stock() { }
 
@@ -30,24 +30,24 @@ public class Stock {
 	@Column(name="symbol", nullable=false, unique=true)
     private String symbol;
 
-	/*@OneToMany
-	@JoinColumn(name="qid")
+	@OneToMany
+	@JoinColumn(name="symbol")
 	private Set<Quote> quotes = new HashSet<Quote>();
 	public void setQuotes(Set<Quote> quotes) { this.quotes = quotes; }
 	public Set<Quote> getQuotes() { return this.quotes; }
 
 	@OneToMany
-	@JoinColumn(name="tid")
+	@JoinColumn(name="symbol")
 	private Set<Tick> ticks = new HashSet<Tick>();
 	public void setTicks(Set<Tick> ticks) { this.ticks = ticks; }
 	public Set<Tick> getTicks() { return this.ticks; }
 
 	@OneToMany
-	@JoinColumn(name="sid")
+	@JoinColumn(name="symbol")
 	private Set<Investment> investments = new HashSet<Investment>();
 	public void setInvestments(Set<Investment> investments) { this.investments = investments; }
 	public Set<Investment> getInvestments() { return this.investments; }
-*/
+
 	@Transient
 	@XmlElementWrapper(name="results")
 	@XmlElement(name="quote")
@@ -62,5 +62,7 @@ public class Stock {
 
     public String getName() { return this.name; }
     public String getSymbol() { return this.symbol; }
-
+	public Tick getLastTick() {
+		return new Tick();
+	}
 }

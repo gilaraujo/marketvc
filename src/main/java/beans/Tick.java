@@ -16,10 +16,10 @@ class TickHelper {
     @XmlElement(name="ChangeinPercent")
     public String changeinpercent;
 
-    @XmlElement(name="Ask")
+    @XmlElement(name="AskRealtime")
     public Double ask;
 
-    @XmlElement(name="Bid")
+    @XmlElement(name="BidRealtime")
     public Double bid;
 
     @XmlElement(name="Volume")
@@ -30,7 +30,7 @@ class TickHelper {
 @Entity
 @Table(name="ttick")
 @XmlRootElement(name="query")
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.NONE)
 public class Tick {
 	public Tick() { }
 
@@ -57,12 +57,12 @@ public class Tick {
 
 	@Column(name="volume")
     private Double volume;
-/*
+
 	@ManyToOne
-	@JoinColumn(name="tid", nullable=false, updatable=false, insertable=false)
+	@JoinColumn(name="symbol", nullable=true, updatable=false, insertable=false)
 	private Stock stock;
 	public Stock getStock() { return this.stock; }
-*/
+
     @Transient
 	@XmlElementWrapper(name="results")
 	@XmlElement(name="quote")

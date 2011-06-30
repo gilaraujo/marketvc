@@ -34,7 +34,7 @@ class QuoteHelper {
 @Entity
 @Table(name="tquote")
 @XmlRootElement(name="query")
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.NONE)
 public class Quote {
 	public Quote() { }
 
@@ -64,12 +64,12 @@ public class Quote {
 
 	@Column(name="adjclose")
 	private Double adjclose;
-/*
+
 	@ManyToOne
-	@JoinColumn(name="qid", nullable=false, updatable=false, insertable=false)
+	@JoinColumn(name="symbol", nullable=true, updatable=false, insertable=false)
 	private Stock stock;
 	public Stock getStock() { return this.stock; }
-*/
+
 	@Transient
 	@XmlElementWrapper(name="results")
 	@XmlElement(name="quote")
