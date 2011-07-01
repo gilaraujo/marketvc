@@ -115,6 +115,9 @@ public class MarketServlet extends HttpServlet implements Default {
 									owner.getInvestments().remove(investment);	
 									investment.setOwner(user);
 									user.getInvestments().add(investment);
+									session.update(investment);
+									session.update(owner);
+									session.update(user);
 								}
 								else {
 									investment.setAmount(investment.getAmount() - qty);
@@ -131,8 +134,8 @@ public class MarketServlet extends HttpServlet implements Default {
 									session.update(st);
 									session.update(user);
 									session.update(owner);
-									session.getTransaction().commit();
 								}
+								session.getTransaction().commit();
 								response.sendRedirect("investments.jsp?msg=11");
 							}
 							else response.sendRedirect("stocks.jsp?msg=10");
