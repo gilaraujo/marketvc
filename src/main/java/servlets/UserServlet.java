@@ -139,7 +139,7 @@ public class UserServlet extends HttpServlet implements Default {
 			if (user == null){
 				response.sendRedirect("login.jsp");
 			}
-			else 
+			else {
 				try{
 					id = Integer.parseInt(request.getParameter("id"));
 					List<Investment> investments = user.getInvestments();
@@ -177,6 +177,7 @@ public class UserServlet extends HttpServlet implements Default {
 					e.printStackTrace();
 					response.sendRedirect("index.jsp?msg=7");
 				}
+			}
 			break;			
 	}
 

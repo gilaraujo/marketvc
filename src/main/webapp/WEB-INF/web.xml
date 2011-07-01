@@ -34,4 +34,14 @@
     <url-pattern>/market</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+    <servlet-name>bankservlet</servlet-name>
+    <servlet-class>br.usp.marketvc.servlets.BankServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>bankservlet</servlet-name>
+    <url-pattern>/bank</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
