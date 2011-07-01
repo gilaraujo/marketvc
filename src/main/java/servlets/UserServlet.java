@@ -69,21 +69,26 @@ public class UserServlet extends HttpServlet implements Default {
 				}
 			break;
 		case LOGIN:
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
-			session.beginTransaction();
-			user2 = new User();
-			user2.setEmail(request.getParameter("email"));
-			user2.setPasswd(request.getParameter("pass"));
-			user = (User) session.createQuery("select u from User u left join fetch u.investments where u.email = :uemail and u.passwd = :upasswd").setParameter("uemail", user2.getEmail()).setParameter("upasswd", user2.getPasswd()).uniqueResult();
-			User user3 = (User) session.createQuery("select u from User u left join fetch u.loans where u.email = :uemail and u.passwd = :upasswd").setParameter("uemail", user2.getEmail()).setParameter("upasswd", user2.getPasswd()).uniqueResult();
-			user.setLoans(user3.getLoans());
-			session.getTransaction().commit();
-			if (user == null) { response.sendRedirect("login.jsp"); }
-			else {
-				usession = request.getSession();
-				usession.setAttribute("user", user);
-				response.sendRedirect("index.jsp");
-			}			
+			try {
+				session = HibernateUtil.getSessionFactory().getCurrentSession();
+				session.beginTransaction();
+				user2 = new User();
+				user2.setEmail(request.getParameter("email"));
+				user2.setPasswd(request.getParameter("pass"));
+				user = (User) session.createQuery("select u from User u left join fetch u.investments where u.email = :uemail and u.passwd = :upasswd").setParameter("uemail", user2.getEmail()).setParameter("upasswd", user2.getPasswd()).uniqueResult();
+				User user3 = (User) session.createQuery("select u from User u left join fetch u.loans where u.email = :uemail and u.passwd = :upasswd").setParameter("uemail", user2.getEmail()).setParameter("upasswd", user2.getPasswd()).uniqueResult();
+				user.setLoans(user3.getLoans());
+				session.getTransaction().commit();
+				if (user == null) { response.sendRedirect("login.jsp"); }
+				else {
+					usession = request.getSession();
+					usession.setAttribute("user", user);
+					response.sendRedirect("index.jsp");
+				}
+			} catch (Exception e) { 
+				e.printStackTrace(); 
+				response.sendRedirect("login.jsp?msg=19");						
+			}	
 			break;
 		case LOGOUT:
 			usession = request.getSession();

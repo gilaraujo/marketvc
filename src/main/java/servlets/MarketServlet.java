@@ -104,7 +104,7 @@ public class MarketServlet extends HttpServlet implements Default {
 					else {
 						session = HibernateUtil.getSessionFactory().getCurrentSession();
 						session.beginTransaction();
-						int id = Integer.parseInt(request.getParameter("id"));
+						long id = Long.parseLong(request.getParameter("id"));
 						Investment investment = (Investment) session.createQuery("select i from Investment i where i.id = :iid").setParameter("iid",id).uniqueResult();
 						User owner = investment.getOwner();
 						if (qty < investment.getAmount()) {
@@ -123,13 +123,16 @@ public class MarketServlet extends HttpServlet implements Default {
 									new_investment.setPrice(investment.getPrice());
 									new_investment.setSelling(false);
 									new_investment.setStock(investment.getStock());
+									investment.getStock().getInvestments().add(new_investment);
 									new_investment.setOwner(user);
 									user.getInvestments().add(new_investment);
 									session.save(new_investment);
+									session.update(investment.getStock());
 								}
 								session.update(user);
 								session.update(owner);
 								session.getTransaction().commit();
+								response.sendRedirect("investments.jsp?msg=11");
 							}
 							else response.sendRedirect("stocks.jsp?msg=10");
 						}

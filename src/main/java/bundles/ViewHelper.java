@@ -82,7 +82,7 @@ public class ViewHelper {
 			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
 			buffer.append(formatter.format(parameters));
 			buffer.append(rb.getString("END_ASKBID"));
-			parameters = new Object[] { messages.getString("BUY"), stock.getSymbol(), "inv" };
+			parameters = new Object[] { messages.getString("BUY"), investment.getId(), "inv" };
 			formatter.applyPattern(rb.getString("QUOTE_BUY"));
 			buffer.append(formatter.format(parameters));
 			buffer.append(rb.getString("END_INNER_QUOTE"));
@@ -231,7 +231,7 @@ public class ViewHelper {
 			parameters = new Object[] { stock.getSymbol(), stock.getName() };
 			formatter.applyPattern(rb.getString("QUOTE_NAME"));
 			buffer.append(formatter.format(parameters));
-			parameters = new Object[] { (tick.getChange() > 0) ? "up" : "down", tick.getChange(), tick.getChangeInPercent(), messages.getString("CURRENCY"), tick.getLastTrade() };
+			parameters = new Object[] { (tick.getChange() > 0) ? "up" : "down", tick.getChange(), tick.getChangeInPercent(), messages.getString("CURRENCY"), investment.getPrice() };
 			formatter.applyPattern(rb.getString("QUOTE_CHANGE"));
 			buffer.append(formatter.format(parameters));
 			buffer.append(rb.getString("START_ASKBID"));
