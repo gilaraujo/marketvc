@@ -20,6 +20,9 @@ public class Loan {
 
 	@Column(name="interest")
     private Double interest;
+	
+	@Column(name="ldate")
+	private Date date;
 
 	@ManyToOne
 	@JoinColumn(name="email", nullable=true, updatable=false, insertable=false)
@@ -30,9 +33,11 @@ public class Loan {
 	public Long getId() { return this.lid; }
     public Double getAmount() { return this.amount; }
     public Double getInterest() { return this.interest; }
+	public Date getDate() { return this.date; }
 
 	public void setAmount(Double amount) { this.amount = amount; }
 	public void setInterest(Double interest) { this.interest = interest; }
+	public void setDate(Date date) { this.date = date; }
 
 	public void updateInterest() { this.amount += this.amount * (this.interest/100); }
 }

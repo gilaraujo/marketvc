@@ -36,33 +36,6 @@ public class Market implements Default {
 		session.getTransaction().commit();
 	}
 
-//	public static List<Stock> getStocks() { return stocks; }
-/*
-	public static void addStock(String s) {
-		Iterator itr = stocks.iterator();
-		while (itr.hasNext()) {
-			Stock stock = (Stock) itr.next();
-			if (stock.getSymbol().equals(s)) break;
-		}
-		if (!itr.hasNext()) {
-			try {
-				JAXBContext jc = JAXBContext.newInstance(Stock.class);
-				Unmarshaller unmarshaller = jc.createUnmarshaller();
-				URL url = new URL("http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22"+s+"%22)&env=store://datatables.org/alltableswithkeys");
-				InputStream xmlStream = url.openStream();
-				Stock stock = (Stock) unmarshaller.unmarshal(xmlStream);
-				stock.update();
-				stocks.add(stock);
-				Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-				session.beginTransaction();
-				session.save(stock);
-				session.getTransaction().commit();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-*/
 	public static void generateQuote(Stock s) {
 		Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -132,16 +105,15 @@ public class Market implements Default {
 		session.getTransaction().commit();
 	}
 	public static List<Stock> getStocks() {
-		List<Stock> stocks;
+		List<Stock> stocks = new ArrayList();
 		List<Stock> stocks2;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		stocks = (ArrayList<Stock>)session.createQuery("select s from Stock s left join fetch s.quotes").list();
-		stocks2 = (ArrayList<Stock>)session.createQuery("select s from Stock s left join fetch s.ticks").list();
-		for (int i=0;i<stocks.size();i++) {
-			Stock s1 = stocks.get(i);
-			Stock s2 = stocks2.get(i);
+		for (int i=0;i<companies.length;i++) {
+			Stock s1 = (Stock)session.createQuery("select s from Stock s left join fetch s.quotes where s.symbol = :ssymbol").setParameter("ssymbol",companies[i]).uniqueResult();
+			Stock s2 = (Stock)session.createQuery("select s from Stock s left join fetch s.ticks where s.symbol = :ssymbol").setParameter("ssymbol",companies[i]).uniqueResult();
 			s1.setTicks(s2.getTicks());
+			stocks.add(s1);
 		}
 		return stocks;
 	}

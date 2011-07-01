@@ -33,6 +33,7 @@ public class Investment {
 	@JoinColumn(name="symbol", nullable=true, updatable=false, insertable=false)
 	private Stock stock;
 	public Stock getStock() { return this.stock; }
+	public void setStock(Stock stock) { this.stock = stock; }
 
 	public Long getId() { return this.iid; }
     public Double getPrice() { return this.price; }

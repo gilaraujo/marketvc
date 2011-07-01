@@ -32,19 +32,20 @@ public class BankServlet extends HttpServlet implements Default {
 				response.sendRedirect("bank.jsp");
 			break;
 		case LIST_DEBT:
-		/*	usession = request.getSession();
+			usession = request.getSession();
 			user = (User) usession.getAttribute("user");
 			if (user == null){
 				response.sendRedirect("login.jsp");
 			}
-			else 
+			else {
 				try{
-					out.println(ViewHelper.getDebtList(request.getLocale()));
+					out.println(ViewHelper.getDebtList(request.getLocale(), user));
 				} 
 				catch (Exception e) { 
 					e.printStackTrace();
 					response.sendRedirect("index.jsp?msg=6");
-				} */
+				} 
+			}
 			break;
 		case TAKE_LOAN:
 		

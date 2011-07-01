@@ -91,48 +91,38 @@ public class ViewHelper {
 		return buffer.toString();
 	}
 	
-/*	public static String getDebtList(Locale locale)  throws Exception{
+	public static String getDebtList(Locale locale, User user)  throws Exception{
 		ResourceBundle rb = ResourceBundle.getBundle("bundles.View");
 		ResourceBundle messages = ResourceBundle.getBundle("bundles.Messages", locale);
 		StringBuffer buffer = new StringBuffer("");
 		MessageFormat formatter = new MessageFormat("");
 		Object[] parameters = null;
 	
-	// 	OBTER DADOS
-	//	List<Stock> stocks = Market.getStocks();
-	//	if (stocks.size() > 0) {
-	// 	MODIFICAR ITERATOR
-		for (Iterator it = stocks.iterator(); it.hasNext();) {
-				// MODIFICAR OBJETOS
-				Stock stock = (Stock) it.next();
-				Tick tick = stock.getLastTick();
-				
-				buffer.append(rb.getString("START_DEBT"));
-				// MODIFICAR PARAMETROS = Debt.getDate().toString()
-				parameters = new Object[] { stock.getSymbol() };
-				formatter.applyPattern(rb.getString("DEBT_DATE"));
-				buffer.append(formatter.format(parameters));
-				buffer.append(rb.getString("START_INNER_DEBT"));
-				// MODIFICAR PARAMETROS = messages.getString("CURRENCY")         Debt.getLoan()
-				parameters = new Object[] { stock.getSymbol(), stock.getName() };
-				formatter.applyPattern(rb.getString("DEBT_AMOUNT"));
-				buffer.append(formatter.format(parameters));
-				// MODIFICAR PARAMETROS = Debt.getInterest()           messages.getString("PER_DAY")
-				parameters = new Object[] { (tick.getChange() > 0) ? "up" : "down", tick.getChange(), tick.getChangeInPercent() };
-				formatter.applyPattern(rb.getString("DEBT_INTEREST"));
-				buffer.append(formatter.format(parameters));
-				// MODIFICAR PARAMETROS = Debt.getId()             messages.getString("PAY_OFF")                 
-				parameters = new Object[] { messages.getString("ASK"), tick.getAsk() };
-				formatter.applyPattern(rb.getString("DEBT_PAY"));
-				buffer.append(formatter.format(parameters));
-				buffer.append(rb.getString("END_INNER_DEBT"));
-				buffer.append(rb.getString("END_DEBT"));
-			}
-	//	}
+		List<Loan> loans = user.getLoans();
+		for (Iterator it = loans.iterator(); it.hasNext();) {
+			Loan loan = (Loan) it.next();
+			
+			buffer.append(rb.getString("START_DEBT"));
+			parameters = new Object[] { Loan.getDate().toString() };
+			formatter.applyPattern(rb.getString("DEBT_DATE"));
+			buffer.append(formatter.format(parameters));
+			buffer.append(rb.getString("START_INNER_DEBT"));
+			parameters = new Object[] { messages.getString("CURRENCY"), Loan.getAmount() };
+			formatter.applyPattern(rb.getString("DEBT_AMOUNT"));
+			buffer.append(formatter.format(parameters));
+			parameters = new Object[] { Loan.getInterest(), messages.getString("PER_DAY") };
+			formatter.applyPattern(rb.getString("DEBT_INTEREST"));
+			buffer.append(formatter.format(parameters));
+			parameters = new Object[] { Loan.getId(), messages.getString("PAY_OFF") };
+			formatter.applyPattern(rb.getString("DEBT_PAY"));
+			buffer.append(formatter.format(parameters));
+			buffer.append(rb.getString("END_INNER_DEBT"));
+			buffer.append(rb.getString("END_DEBT"));
+		}
 		
 		return buffer.toString();
 	}
-	*/
+	
 	public static String getInvestmentsList(Locale locale, User user)  throws Exception{
 		ResourceBundle rb = ResourceBundle.getBundle("bundles.View");
 		ResourceBundle messages = ResourceBundle.getBundle("bundles.Messages", locale);
