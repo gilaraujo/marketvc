@@ -87,9 +87,11 @@ public class MarketServlet extends HttpServlet implements Default {
 						investment.setPrice(value);
 						investment.setAmount(qty);
 						investment.setSelling(false);
+						investment.setStock(stock);
 						session.save(investment);
 						stock.getInvestments().add(investment);
 						user.getInvestments().add(investment);
+						session.update(stock);
 						session.update(user);
 						session.getTransaction().commit();
 						response.sendRedirect("investments.jsp?msg=11");
