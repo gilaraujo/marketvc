@@ -48,6 +48,50 @@ public class ViewHelper {
 		return buffer.toString();
 	}
 	
+	public static String getUsersStocks(Locale locale)  throws Exception{
+		ResourceBundle rb = ResourceBundle.getBundle("bundles.View");
+		ResourceBundle messages = ResourceBundle.getBundle("bundles.Messages", locale);
+		StringBuffer buffer = new StringBuffer("");
+		MessageFormat formatter = new MessageFormat("");
+		Object[] parameters = null;
+
+		List investments = Market.getAvailableInvestments();
+		for (Iterator it = investments.iterator(); it.hasNext();) {
+			Investment investment = (Investment) it.next();
+			Stock stock = investment.getStock();
+			Tick tick = stock.getLastTick();
+			buffer.append(rb.getString("START_QUOTE"));
+			parameters = new Object[] { stock.getSymbol() };
+			formatter.applyPattern(rb.getString("QUOTE_GRAPH"));
+			buffer.append(formatter.format(parameters));
+			buffer.append(rb.getString("START_INNER_QUOTE"));
+			parameters = new Object[] { stock.getSymbol(), stock.getName() };
+			formatter.applyPattern(rb.getString("QUOTE_NAME"));
+			buffer.append(formatter.format(parameters));
+			parameters = new Object[] { (tick.getChange() > 0) ? "up" : "down", tick.getChange(), tick.getChangeInPercent(), messages.getString("CURRENCY"), investment.getPrice() };
+			formatter.applyPattern(rb.getString("QUOTE_CHANGE"));
+			buffer.append(formatter.format(parameters));
+			buffer.append(rb.getString("START_ASKBID"));
+			parameters = new Object[] { messages.getString("ASK"), tick.getAsk() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			buffer.append(formatter.format(parameters));
+			parameters = new Object[] { messages.getString("BID"), tick.getBid() };	
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			buffer.append(formatter.format(parameters));
+			parameters = new Object[] { messages.getString("VOLUME"), investment.getAmount() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			buffer.append(formatter.format(parameters));
+			buffer.append(rb.getString("END_ASKBID"));
+			parameters = new Object[] { messages.getString("BUY"), stock.getSymbol(), "inv" };
+			formatter.applyPattern(rb.getString("QUOTE_BUY"));
+			buffer.append(formatter.format(parameters));
+			buffer.append(rb.getString("END_INNER_QUOTE"));
+			buffer.append(rb.getString("END_QUOTE"));
+		}
+	
+		return buffer.toString();
+	}
+	
 	public static String getAllStocks(Locale locale)  throws Exception{
 		ResourceBundle rb = ResourceBundle.getBundle("bundles.View");
 		ResourceBundle messages = ResourceBundle.getBundle("bundles.Messages", locale);
@@ -81,7 +125,51 @@ public class ViewHelper {
 			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
 			buffer.append(formatter.format(parameters));
 			buffer.append(rb.getString("END_ASKBID"));
-			parameters = new Object[] { messages.getString("BUY"), stock.getSymbol() };
+			parameters = new Object[] { messages.getString("BUY"), stock.getSymbol(), "" };
+			formatter.applyPattern(rb.getString("QUOTE_BUY"));
+			buffer.append(formatter.format(parameters));
+			buffer.append(rb.getString("END_INNER_QUOTE"));
+			buffer.append(rb.getString("END_QUOTE"));
+		}
+	
+		return buffer.toString();
+	}
+	
+	public static String getRecommendedStocks(Locale locale)  throws Exception{
+		ResourceBundle rb = ResourceBundle.getBundle("bundles.View");
+		ResourceBundle messages = ResourceBundle.getBundle("bundles.Messages", locale);
+		StringBuffer buffer = new StringBuffer("");
+		MessageFormat formatter = new MessageFormat("");
+		Object[] parameters = null;
+
+		// MUDAR AQUIII
+		List stocks = Market.getStocks();
+		for (Iterator it = stocks.iterator(); it.hasNext();) {
+			Stock stock = (Stock) it.next();
+			Tick tick = stock.getLastTick();
+			buffer.append(rb.getString("START_QUOTE"));
+			parameters = new Object[] { stock.getSymbol() };
+			formatter.applyPattern(rb.getString("QUOTE_GRAPH"));
+			buffer.append(formatter.format(parameters));
+			buffer.append(rb.getString("START_INNER_QUOTE"));
+			parameters = new Object[] { stock.getSymbol(), stock.getName() };
+			formatter.applyPattern(rb.getString("QUOTE_NAME"));
+			buffer.append(formatter.format(parameters));
+			parameters = new Object[] { (tick.getChange() > 0) ? "up" : "down", tick.getChange(), tick.getChangeInPercent(), messages.getString("CURRENCY"), tick.getLastTrade() };
+			formatter.applyPattern(rb.getString("QUOTE_CHANGE"));
+			buffer.append(formatter.format(parameters));
+			buffer.append(rb.getString("START_ASKBID"));
+			parameters = new Object[] { messages.getString("ASK"), tick.getAsk() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			buffer.append(formatter.format(parameters));
+			parameters = new Object[] { messages.getString("BID"), tick.getBid() };	
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			buffer.append(formatter.format(parameters));
+			parameters = new Object[] { messages.getString("VOLUME"), tick.getVolume() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			buffer.append(formatter.format(parameters));
+			buffer.append(rb.getString("END_ASKBID"));
+			parameters = new Object[] { messages.getString("BUY"), stock.getSymbol(), "" };
 			formatter.applyPattern(rb.getString("QUOTE_BUY"));
 			buffer.append(formatter.format(parameters));
 			buffer.append(rb.getString("END_INNER_QUOTE"));
@@ -103,7 +191,7 @@ public class ViewHelper {
 			Loan loan = (Loan) it.next();
 			
 			buffer.append(rb.getString("START_DEBT"));
-			parameters = new Object[] { loan.getDate().toString() };
+			parameters = new Object[] { (loan.getDate().getYear()+1900)+"-"+(loan.getDate().getMonth()+1)+"-"+loan.getDate().getDate() };
 			formatter.applyPattern(rb.getString("DEBT_DATE"));
 			buffer.append(formatter.format(parameters));
 			buffer.append(rb.getString("START_INNER_DEBT"));
@@ -153,7 +241,7 @@ public class ViewHelper {
 			parameters = new Object[] { messages.getString("BID"), tick.getBid() };	
 			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
 			buffer.append(formatter.format(parameters));
-			parameters = new Object[] { messages.getString("VOLUME"), tick.getVolume() };
+			parameters = new Object[] { messages.getString("VOLUME"), investment.getAmount() };
 			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
 			buffer.append(formatter.format(parameters));
 			buffer.append(rb.getString("END_ASKBID"));

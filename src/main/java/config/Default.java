@@ -7,7 +7,7 @@ public interface Default {
 // directory to store data
 //public String dropboxPath = "/tmp";
 
-public String[] companies = {"MSFT"};
+public String[] companies = {"MSFT","PBR","GOOG"};
 
 // space
 public double defaultFunds = 1000;
@@ -26,8 +26,9 @@ public int LATEST_QUOTES = 10;
 public int VIEW_ALL_STOCKS = 11;
 public int LIST_ALL_STOCK = 12;
 public int BUY_STOCK = 13;
-public int RECOMMENDED_STOCKS = 14;
+public int VIEW_RECOMMENDED_STOCKS = 14;
 public int VIEW_LATEST_QUOTES = 15;
+public int LIST_RECOMMENDED_STOCKS = 16;
 public int VIEW_BANK = 20;
 public int LIST_DEBT = 21;
 public int TAKE_LOAN = 22;

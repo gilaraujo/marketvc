@@ -58,11 +58,12 @@ public class BankServlet extends HttpServlet implements Default {
 				try {
 					Loan loan = new Loan();
 					loan.setAmount(Double.parseDouble(request.getParameter("amount")));
-					loan.setInterest(Bank.getInterestRate());
+					loan.setInterest(Bank.newLoan());
 					Calendar calendar = Calendar.getInstance();
 					loan.setDate(calendar.getTime());
 					loan.setOwner(user);
 					user.getLoans().add(loan);
+					user.increaseFunds(loan.getAmount());
 					session = HibernateUtil.getSessionFactory().getCurrentSession();
 					session.beginTransaction();
 					session.save(loan);
@@ -75,9 +76,43 @@ public class BankServlet extends HttpServlet implements Default {
 					response.sendRedirect("index.jsp?msg=13");
 				} 
 			}
-		
 			break;
 		case PAY_DEBT:
+			int i, find, id;
+			usession = request.getSession();
+			user = (User) usession.getAttribute("user");
+			if (user == null){
+				response.sendRedirect("login.jsp");
+			}
+			else {
+					id = Integer.parseInt(request.getParameter("id"));
+					List<Loan> loans = user.getLoans();
+					i = 0;
+					find = 0;
+					while ((i < loans.size()) && (find == 0)) {
+						if (loans.get(i).getId() == id) find = 1;
+						else i++;
+					}
+					if (user.hasEnoughFunds(loans.get(i).getAmount())) {
+						try {
+							Loan loan = loans.get(i);
+							user.getLoans().remove(i);
+							user.decreaseFunds(loan.getAmount());
+							session = HibernateUtil.getSessionFactory().getCurrentSession();
+							session.beginTransaction();
+							session.update(user);
+							session.delete(loan);
+							Bank.paidLoan();
+							session.getTransaction().commit();
+							response.sendRedirect("bank.jsp?msg=14");	
+						} 
+						catch (Exception e) { 
+							e.printStackTrace();
+							response.sendRedirect("index.jsp?msg=15");
+						} 
+					} 
+					else response.sendRedirect("bank.jsp?msg=16");
+			}
 			break;
 	}
 

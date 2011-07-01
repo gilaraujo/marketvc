@@ -154,7 +154,7 @@ public class UserServlet extends HttpServlet implements Default {
 					if (request.getParameter("bank") != null) {
 						Stock stock = investments.get(i).getStock();
 						Tick tick = stock.getLastTick();
-						price = tick.getLastTrade();
+						price = tick.getLastTrade() * investments.get(i).getAmount();
 						user.increaseFunds(price/2);
 						Investment investment = user.getInvestments().get(i);
 						user.getInvestments().remove(i);
