@@ -23,7 +23,7 @@ public class Bank implements Default {
 	}
 	public static Double newLoan() {
 		interestrate += 0.01;
-		return interestrate;
+		return (interestrate - 0.01);
 	}
 	public static void paidLoan() {
 		if (interestrate >= 0.11) interestrate -= 0.01;

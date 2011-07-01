@@ -65,4 +65,7 @@ public class Stock {
 	public Tick getLastTick() {
 		return (Tick)this.ticks.get(this.ticks.size()-1);
 	}
+	public Quote getLastQuote() {
+		return (Quote)this.quotes.get(this.quotes.size()-1);
+	}
 }

@@ -107,7 +107,7 @@ public class MarketServlet extends HttpServlet implements Default {
 						long id = Long.parseLong(request.getParameter("id"));
 						Investment investment = (Investment) session.createQuery("select i from Investment i where i.id = :iid").setParameter("iid",id).uniqueResult();
 						User owner = investment.getOwner();
-						if (qty < investment.getAmount()) {
+						if (qty <= investment.getAmount()) {
 							if (user.hasEnoughFunds(qty*investment.getPrice())) {
 								owner.increaseFunds(qty*investment.getPrice());
 								user.decreaseFunds(qty*investment.getPrice());
@@ -122,16 +122,17 @@ public class MarketServlet extends HttpServlet implements Default {
 									new_investment.setAmount(qty);
 									new_investment.setPrice(investment.getPrice());
 									new_investment.setSelling(false);
-									new_investment.setStock(investment.getStock());
-									investment.getStock().getInvestments().add(new_investment);
+									Stock st = (Stock)session.load(Stock.class,investment.getStock().getSymbol());
+									new_investment.setStock(st);
+									st.getInvestments().add(new_investment);
 									new_investment.setOwner(user);
-									user.getInvestments().add(new_investment);
 									session.save(new_investment);
-									session.update(investment.getStock());
+									user.getInvestments().add(new_investment);
+									session.update(st);
+									session.update(user);
+									session.update(owner);
+									session.getTransaction().commit();
 								}
-								session.update(user);
-								session.update(owner);
-								session.getTransaction().commit();
 								response.sendRedirect("investments.jsp?msg=11");
 							}
 							else response.sendRedirect("stocks.jsp?msg=10");
