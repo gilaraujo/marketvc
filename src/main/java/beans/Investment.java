@@ -28,6 +28,7 @@ public class Investment {
 	@JoinColumn(name="email", nullable=true, updatable=false, insertable=false)
 	private User owner;
 	public User getOwner() { return this.owner; }
+	public void setOwner(User owner) { this.owner = owner; }
 
 	@ManyToOne
 	@JoinColumn(name="symbol", nullable=true, updatable=false, insertable=false)
