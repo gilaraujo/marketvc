@@ -19,6 +19,7 @@ public class ViewHelper {
 		for (Iterator it = stocks.iterator(); it.hasNext();) {
 			Stock stock = (Stock) it.next();
 			Tick tick = stock.getLastTick();
+			Quote quote = stock.getLastQuote();
 			buffer.append(rb.getString("START_QUOTE"));
 			parameters = new Object[] { stock.getSymbol() };
 			formatter.applyPattern(rb.getString("QUOTE_GRAPH"));
@@ -30,6 +31,16 @@ public class ViewHelper {
 			parameters = new Object[] { (tick.getChange() > 0) ? "up" : "down", tick.getChange(), tick.getChangeInPercent(), messages.getString("CURRENCY"), tick.getLastTrade() };
 			formatter.applyPattern(rb.getString("QUOTE_CHANGE"));
 			buffer.append(formatter.format(parameters));
+			buffer.append(rb.getString("START_ASKBID"));
+			parameters = new Object[] { messages.getString("LAST_OPEN"), quote.getOpen() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			parameters = new Object[] { messages.getString("CLOSE"), quote.getClose() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			parameters = new Object[] { messages.getString("HIGH"), quote.getHigh() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			parameters = new Object[] { messages.getString("LOW"), quote.getLow() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			buffer.append(rb.getString("END_ASKBID"));
 			buffer.append(rb.getString("START_ASKBID"));
 			parameters = new Object[] { messages.getString("ASK"), tick.getAsk() };
 			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
@@ -60,6 +71,7 @@ public class ViewHelper {
 			Investment investment = (Investment) it.next();
 			Stock stock = investment.getStock();
 			Tick tick = stock.getLastTick();
+			Quote quote = stock.getLastQuote();
 			buffer.append(rb.getString("START_QUOTE"));
 			parameters = new Object[] { stock.getSymbol() };
 			formatter.applyPattern(rb.getString("QUOTE_GRAPH"));
@@ -71,6 +83,16 @@ public class ViewHelper {
 			parameters = new Object[] { (tick.getChange() > 0) ? "up" : "down", tick.getChange(), tick.getChangeInPercent(), messages.getString("CURRENCY"), investment.getPrice() };
 			formatter.applyPattern(rb.getString("QUOTE_CHANGE"));
 			buffer.append(formatter.format(parameters));
+			buffer.append(rb.getString("START_ASKBID"));
+			parameters = new Object[] { messages.getString("LAST_OPEN"), quote.getOpen() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			parameters = new Object[] { messages.getString("CLOSE"), quote.getClose() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			parameters = new Object[] { messages.getString("HIGH"), quote.getHigh() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			parameters = new Object[] { messages.getString("LOW"), quote.getLow() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			buffer.append(rb.getString("END_ASKBID"));
 			buffer.append(rb.getString("START_ASKBID"));
 			parameters = new Object[] { messages.getString("ASK"), tick.getAsk() };
 			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
@@ -103,6 +125,7 @@ public class ViewHelper {
 		for (Iterator it = stocks.iterator(); it.hasNext();) {
 			Stock stock = (Stock) it.next();
 			Tick tick = stock.getLastTick();
+			Quote quote = stock.getLastQuote();
 			buffer.append(rb.getString("START_QUOTE"));
 			parameters = new Object[] { stock.getSymbol() };
 			formatter.applyPattern(rb.getString("QUOTE_GRAPH"));
@@ -114,6 +137,17 @@ public class ViewHelper {
 			parameters = new Object[] { (tick.getChange() > 0) ? "up" : "down", tick.getChange(), tick.getChangeInPercent(), messages.getString("CURRENCY"), tick.getLastTrade() };
 			formatter.applyPattern(rb.getString("QUOTE_CHANGE"));
 			buffer.append(formatter.format(parameters));
+			Quote quote = stock.getLastQuote();
+			buffer.append(rb.getString("START_ASKBID"));
+			parameters = new Object[] { messages.getString("LAST_OPEN"), quote.getOpen() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			parameters = new Object[] { messages.getString("CLOSE"), quote.getClose() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			parameters = new Object[] { messages.getString("HIGH"), quote.getHigh() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			parameters = new Object[] { messages.getString("LOW"), quote.getLow() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			buffer.append(rb.getString("END_ASKBID"));
 			buffer.append(rb.getString("START_ASKBID"));
 			parameters = new Object[] { messages.getString("ASK"), tick.getAsk() };
 			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
@@ -147,6 +181,7 @@ public class ViewHelper {
 		for (Iterator it = stocks.iterator(); it.hasNext();) {
 			Stock stock = (Stock) it.next();
 			Tick tick = stock.getLastTick();
+			Quote quote = stock.getLastQuote();
 			buffer.append(rb.getString("START_QUOTE"));
 			parameters = new Object[] { stock.getSymbol() };
 			formatter.applyPattern(rb.getString("QUOTE_GRAPH"));
@@ -158,6 +193,16 @@ public class ViewHelper {
 			parameters = new Object[] { (tick.getChange() > 0) ? "up" : "down", tick.getChange(), tick.getChangeInPercent(), messages.getString("CURRENCY"), tick.getLastTrade() };
 			formatter.applyPattern(rb.getString("QUOTE_CHANGE"));
 			buffer.append(formatter.format(parameters));
+			buffer.append(rb.getString("START_ASKBID"));
+			parameters = new Object[] { messages.getString("LAST_OPEN"), quote.getOpen() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			parameters = new Object[] { messages.getString("CLOSE"), quote.getClose() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			parameters = new Object[] { messages.getString("HIGH"), quote.getHigh() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			parameters = new Object[] { messages.getString("LOW"), quote.getLow() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			buffer.append(rb.getString("END_ASKBID"));
 			buffer.append(rb.getString("START_ASKBID"));
 			parameters = new Object[] { messages.getString("ASK"), tick.getAsk() };
 			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
@@ -223,6 +268,7 @@ public class ViewHelper {
 			Investment investment = (Investment) it.next();
 			Stock stock = investment.getStock();
 			Tick tick = stock.getLastTick();
+			Quote quote = stock.getLastQuote();
 			buffer.append(rb.getString("START_INV"));
 			parameters = new Object[] { stock.getSymbol() };
 			formatter.applyPattern(rb.getString("QUOTE_GRAPH"));
@@ -234,6 +280,16 @@ public class ViewHelper {
 			parameters = new Object[] { (tick.getChange() > 0) ? "up" : "down", tick.getChange(), tick.getChangeInPercent(), messages.getString("CURRENCY"), investment.getPrice() };
 			formatter.applyPattern(rb.getString("QUOTE_CHANGE"));
 			buffer.append(formatter.format(parameters));
+			buffer.append(rb.getString("START_ASKBID"));
+			parameters = new Object[] { messages.getString("LAST_OPEN"), quote.getOpen() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			parameters = new Object[] { messages.getString("CLOSE"), quote.getClose() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			parameters = new Object[] { messages.getString("HIGH"), quote.getHigh() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			parameters = new Object[] { messages.getString("LOW"), quote.getLow() };
+			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
+			buffer.append(rb.getString("END_ASKBID"));
 			buffer.append(rb.getString("START_ASKBID"));
 			parameters = new Object[] { messages.getString("ASK"), tick.getAsk() };
 			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
