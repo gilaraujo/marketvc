@@ -162,7 +162,7 @@ public class UserServlet extends HttpServlet implements Default {
 						response.sendRedirect("funds.jsp?msg=8");
 					}
 					else {
-						investments.get(i).setPrice(Double.parseDouble(request.getParameter("price")));
+						investments.get(i).setPrice(Double.parseDouble(request.getParameter("price").replace(",",".")));
 						investments.get(i).setSelling(new Boolean(request.getParameter("selling") != null)); 
 						session = HibernateUtil.getSessionFactory().getCurrentSession();
 						session.beginTransaction();
