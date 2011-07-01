@@ -103,17 +103,17 @@ public class ViewHelper {
 			Loan loan = (Loan) it.next();
 			
 			buffer.append(rb.getString("START_DEBT"));
-			parameters = new Object[] { Loan.getDate().toString() };
+			parameters = new Object[] { loan.getDate().toString() };
 			formatter.applyPattern(rb.getString("DEBT_DATE"));
 			buffer.append(formatter.format(parameters));
 			buffer.append(rb.getString("START_INNER_DEBT"));
-			parameters = new Object[] { messages.getString("CURRENCY"), Loan.getAmount() };
+			parameters = new Object[] { messages.getString("CURRENCY"), loan.getAmount() };
 			formatter.applyPattern(rb.getString("DEBT_AMOUNT"));
 			buffer.append(formatter.format(parameters));
-			parameters = new Object[] { Loan.getInterest(), messages.getString("PER_DAY") };
+			parameters = new Object[] { loan.getInterest(), messages.getString("PER_DAY") };
 			formatter.applyPattern(rb.getString("DEBT_INTEREST"));
 			buffer.append(formatter.format(parameters));
-			parameters = new Object[] { Loan.getId(), messages.getString("PAY_OFF") };
+			parameters = new Object[] { loan.getId(), messages.getString("PAY_OFF") };
 			formatter.applyPattern(rb.getString("DEBT_PAY"));
 			buffer.append(formatter.format(parameters));
 			buffer.append(rb.getString("END_INNER_DEBT"));
