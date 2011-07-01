@@ -14,7 +14,7 @@
 				</form>
 				<h3><%= msg.getString("MY_DEBT") %></h3>
 				<ul>
-					<li class="debt row">
+					<!--<li class="debt row">
 						<h5>May 4, 2011</h5>
 						<div class="inner-debt">
 							<h4>US$ 1000.00</h4>
@@ -25,10 +25,10 @@
 								<button type="submit"><.%= msg.getString("PAY_OFF") %></button>
 							</form>
 						</div>
-					</li>
-					<!--<.jsp:include page="bank">
-						<.jsp:param name="op" value="21" />
-					<./jsp:include>-->
+					</li>-->
+					<jsp:include page="bank">
+						<jsp:param name="op" value="21" />
+					</jsp:include>
 				</ul>
 			</div>
 <jsp:include page="footer.jsp"/>
