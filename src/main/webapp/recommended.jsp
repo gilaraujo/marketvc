@@ -11,6 +11,12 @@
 							<h3>Microsoft Corporation (MSFT)</h3>
 							<h4 class="up">+0.60 (+2.38%)</h4>
 							<ul class="ask-bid">
+								<li><strong>Last open:</strong> 26.78</li>
+								<li><strong>close:</strong> 26.78</li>
+								<li><strong>high:</strong> 26.78</li>
+								<li><strong>low:</strong> 26.78</li>
+							</ul>
+							<ul class="ask-bid">
 								<li><strong>Ask:</strong> 26.78</li>
 								<li><strong>Bid:</strong> 26.73</li>
 								<li><strong>Volume:</strong> 1000</li>

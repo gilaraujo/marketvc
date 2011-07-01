@@ -137,7 +137,6 @@ public class ViewHelper {
 			parameters = new Object[] { (tick.getChange() > 0) ? "up" : "down", tick.getChange(), tick.getChangeInPercent(), messages.getString("CURRENCY"), tick.getLastTrade() };
 			formatter.applyPattern(rb.getString("QUOTE_CHANGE"));
 			buffer.append(formatter.format(parameters));
-			Quote quote = stock.getLastQuote();
 			buffer.append(rb.getString("START_ASKBID"));
 			parameters = new Object[] { messages.getString("LAST_OPEN"), quote.getOpen() };
 			formatter.applyPattern(rb.getString("ASKBID_ITEM"));
