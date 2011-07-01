@@ -19,7 +19,7 @@
 						<li><a href="/market?op=15"><%= msg.getString("LATEST_QUOTES") %></a></li>
 					<% if (user != null) { %>
 						<li><a href="/market?op=11"><%= msg.getString("ALL_STOCKS") %></a></li>
-						<li><a href="/market?op=14"><%= msg.getString("RECOMMENDED_STOCKS") %></a></li>
+						<!--<li><a href="/market?op=14"><.%= msg.getString("RECOMMENDED_STOCKS") %></a></li>-->
 					</ul>
 					<h4><%= msg.getString("BANK") %></h4>
 					<ul>
