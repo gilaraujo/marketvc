@@ -105,16 +105,15 @@ public class Market implements Default {
 		session.getTransaction().commit();
 	}
 	public static List<Stock> getStocks() {
-		List<Stock> stocks;
+		List<Stock> stocks = new ArrayList();
 		List<Stock> stocks2;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		stocks = (ArrayList<Stock>)session.createQuery("select s from Stock s left join fetch s.quotes").list();
-		stocks2 = (ArrayList<Stock>)session.createQuery("select s from Stock s left join fetch s.ticks").list();
-		for (int i=0;i<stocks.size();i++) {
-			Stock s1 = stocks.get(i);
-			Stock s2 = stocks2.get(i);
+		for (int i=0;i<companies.length;i++) {
+			Stock s1 = (Stock)session.createQuery("select s from Stock s left join fetch s.quotes where s.symbol = :ssymbol").setParameter("ssymbol",companies[i]).uniqueResult();
+			Stock s2 = (Stock)session.createQuery("select s from Stock s left join fetch s.ticks where s.symbol = :ssymbol").setParameter("ssymbol",companies[i]).uniqueResult();
 			s1.setTicks(s2.getTicks());
+			stocks.add(s1);
 		}
 		return stocks;
 	}

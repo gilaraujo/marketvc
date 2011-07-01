@@ -30,13 +30,13 @@ public class Stock {
 	@Column(name="symbol", nullable=false, unique=true)
     private String symbol;
 
-	@OneToMany(fetch=FetchType.LAZY)
+	@OneToMany
 	@JoinColumn(name="symbol")
 	private List<Quote> quotes = new ArrayList<Quote>();
 	public void setQuotes(List<Quote> quotes) { this.quotes = quotes; }
 	public List<Quote> getQuotes() { return this.quotes; }
 
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany
 	@JoinColumn(name="symbol")
 	private List<Tick> ticks = new ArrayList<Tick>();
 	public void setTicks(List<Tick> ticks) { this.ticks = ticks; }
