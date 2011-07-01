@@ -154,19 +154,21 @@ public class UserServlet extends HttpServlet implements Default {
 						Tick tick = stock.getLastTick();
 						price = tick.getLastTrade();
 						user.increaseFunds(price/2);
-						investments.remove(i);		
+						Investment investment = user.getInvestments().get(i);
+						user.getInvestments().remove(i);
 						session = HibernateUtil.getSessionFactory().getCurrentSession();
 						session.beginTransaction();
-						session.save(user);
+						session.update(user);
+						session.delete(investment);
 						session.getTransaction().commit();
 						response.sendRedirect("funds.jsp?msg=8");
 					}
 					else {
-						investments.get(i).setPrice(Double.parseDouble(request.getParameter("price").replace(",",".")));
-						investments.get(i).setSelling(new Boolean(request.getParameter("selling") != null)); 
+						user.getInvestments().get(i).setPrice(Double.parseDouble(request.getParameter("price").replace(",",".")));
+						user.getInvestments().get(i).setSelling(new Boolean(request.getParameter("selling") != null)); 
 						session = HibernateUtil.getSessionFactory().getCurrentSession();
 						session.beginTransaction();
-						session.save(user);
+						session.update(user.getInvestments().get(i));
 						session.getTransaction().commit();
 						response.sendRedirect("investments.jsp?msg=9");
 					}			
