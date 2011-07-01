@@ -7,7 +7,7 @@ public interface Default {
 // directory to store data
 //public String dropboxPath = "/tmp";
 
-public String[] companies = {"MSFT"};
+public String[] companies = {"MSFT","PBR","GOOG"};
 
 // space
 public double defaultFunds = 1000;
