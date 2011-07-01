@@ -27,6 +27,7 @@ public int VIEW_ALL_STOCKS = 11;
 public int LIST_ALL_STOCK = 12;
 public int BUY_STOCK = 13;
 public int RECOMMENDED_STOCKS = 14;
+public int VIEW_LATEST_QUOTES = 15;
 public int VIEW_BANK = 20;
 public int LIST_DEBT = 21;
 public int TAKE_LOAN = 22;
