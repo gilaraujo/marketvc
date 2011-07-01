@@ -36,6 +36,9 @@ public class Market implements Default {
 		session.getTransaction().commit();
 		newDay();
 		newHour();
+		/*TimerTask clock = new Clock();
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(clock,new Date(),(long)interval);*/
 	}
 
 	public static void generateQuote(Stock s) {

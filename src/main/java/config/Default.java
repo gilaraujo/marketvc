@@ -12,8 +12,7 @@ public String[] companies = {"MSFT","PBR","GOOG"};
 // space
 public double defaultFunds = 1000;
 
-public int hourInterval = 60;
-public int dayInterval = 1440;
+public int interval = 15000;
 
 // servlets
 public int INSERT = 0;

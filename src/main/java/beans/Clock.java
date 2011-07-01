@@ -1,16 +1,10 @@
-import java.util.TimerTask;
+import java.util.*;
+import br.usp.marketvc.beans.*;
 
 public class Clock extends TimerTask {
 
-  private int timerInterval;
-
-  public Clock (int timeInterval){
-    this.timerInterval=timeInterval;
-  }
-
   public void run() {
-    //Market.newDay();
-	//Market
+    Market.newHour();
   }
 
 }
