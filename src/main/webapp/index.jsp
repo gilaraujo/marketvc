@@ -5,7 +5,7 @@
 			<div id="quotes" class="thirteen columns content">
 				<h2><%= msg.getString("LATEST_QUOTES") %></h2>
 				<ul>
-					<li class="quote row">
+					<!--<li class="quote row">
 						<img src="http://chart.finance.yahoo.com/t?s=MSFT" />
 						<div class="inner-quote">
 							<h3>Microsoft Corporation (MSFT)</h3>
@@ -18,10 +18,10 @@
 							</ul>
 						</div>
 						
-					</li>
-					<!--<.jsp:include page="market">
-						<.jsp:param name="op" value="10" />
-					<./jsp:include>-->
+					</li>-->
+					<jsp:include page="market">
+						<jsp:param name="op" value="10" />
+					</jsp:include>
 				</ul>
 			</div>
 <jsp:include page="footer.jsp"/>
