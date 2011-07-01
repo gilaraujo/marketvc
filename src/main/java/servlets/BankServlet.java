@@ -58,7 +58,7 @@ public class BankServlet extends HttpServlet implements Default {
 				try {
 					Loan loan = new Loan();
 					loan.setAmount(Double.parseDouble(request.getParameter("amount")));
-					loan.setInterest(Bank.getInterestRate());
+					loan.setInterest(Bank.newLoan());
 					Calendar calendar = Calendar.getInstance();
 					loan.setDate(calendar.getTime());
 					loan.setOwner(user);
@@ -102,6 +102,7 @@ public class BankServlet extends HttpServlet implements Default {
 							session.beginTransaction();
 							session.update(user);
 							session.delete(loan);
+							Bank.paidLoan();
 							session.getTransaction().commit();
 							response.sendRedirect("bank.jsp?msg=14");	
 						} 

@@ -138,7 +138,7 @@ public class MarketServlet extends HttpServlet implements Default {
 				} 
 				catch (Exception e) { 
 					e.printStackTrace();
-					response.sendRedirect("index.jsp?msg=4");
+					response.sendRedirect("index.jsp?msg=18");
 				}
 			break;
 			case VIEW_RECOMMENDED_STOCKS:
